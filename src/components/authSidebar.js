@@ -15,6 +15,7 @@ function AuthSidebar({ className }) {
           width={350}
           height={300}
           alt="app-image"
+          priority
         ></Image>
         <p className="font-semibold text-2xl mb-4">
           App that Covering Banking Needs.

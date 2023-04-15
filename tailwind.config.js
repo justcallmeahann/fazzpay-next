@@ -13,6 +13,7 @@ module.exports = {
         "primary-context": "#EFEFEF",
         secondary: "#FFFFFF",
         dark: "#3A3D42",
+        error: "#FF5B37",
       },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",

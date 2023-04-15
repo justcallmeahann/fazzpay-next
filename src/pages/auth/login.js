@@ -1,20 +1,52 @@
 import { useState } from "react";
 
+import axios from "axios";
 import Link from "next/link";
+import { toast } from "react-toastify";
 
 import AuthSidebar from "@/components/authSidebar";
 import Layout from "@/components/layout";
 
 function Login() {
   const [passwordShown, setPasswordShown] = useState(false);
+  const [form, setForm] = useState({ email: "", password: "" });
+  const [error, setError] = useState({ email: "", password: "" });
+
   const togglePass = (e) => {
     e.preventDefault();
     setPasswordShown(!passwordShown);
   };
+
+  const onChangeForm = (e) => {
+    return setForm((form) => {
+      return {
+        ...form,
+        [e.target.name]: e.target.value,
+      };
+    });
+  };
+
   const submitHandler = (e) => {
     e.preventDefault();
-    console.log("berhasil hore");
+    if (!form.email || !form.password) return;
+    e.target[3].disabled = true;
+    toast.promise(axios.post("https://fazzpay-rose.vercel.app/auth/login"), {
+      pending: "Please wait",
+      error: {
+        render({ data }) {
+          e.target[3].disabled = false;
+          return "Wrong email or password";
+        },
+      },
+      success: {
+        render({ data }) {
+          e.target[3].disabled = false;
+          return "Success login";
+        },
+      },
+    });
   };
+
   return (
     <Layout title={"Login - Fazzpay"}>
       <main className="flex">
@@ -29,10 +61,14 @@ function Login() {
             wherever you are. Desktop, laptop, mobile phone? we cover all of
             that for you!
           </p>
-          <form onSubmit={submitHandler}>
+          <form onSubmit={submitHandler} className="text-dark">
             <label
               htmlFor="email"
-              className="border-b-2 border-gray-400 flex gap-4 px-1 py-1 items-center focus-within:border-primary  duration-150 stroke-gray-500 focus-within:stroke-primary placeholder-shown:border-gray-400"
+              className={`border-b-2 ${
+                form.email !== ""
+                  ? "border-primary stroke-primary"
+                  : "border-gray-400 stroke-gray-500"
+              } flex gap-4 px-1 py-1 items-center focus-within:border-primary duration-150 focus-within:stroke-primary placeholder-shown:border-gray-400`}
             >
               <svg
                 width="22"
@@ -60,14 +96,22 @@ function Login() {
                 name="email"
                 type="email"
                 className="peer focus:outline-none w-full"
+                onChange={onChangeForm}
+                value={form.email}
+                placeholder="Enter your e-mail"
+                required
               ></input>
             </label>
             <label
               htmlFor="password"
-              className="border-b-2 border-gray-400 flex gap-4 px-1 py-1 items-center focus-within:border-primary  duration-150 stroke-gray-500 focus-within:stroke-primary placeholder-shown:border-gray-400"
+              className={`border-b-2 ${
+                form.password !== ""
+                  ? "border-primary stroke-primary"
+                  : "border-gray-400 stroke-gray-500"
+              } flex gap-4 px-1 py-1 items-center focus-within:border-primary duration-150 focus-within:stroke-primary placeholder-shown:border-gray-400`}
             >
               <svg
-                width="22"
+                width="24"
                 height="16"
                 viewBox="0 0 14 22"
                 fill="none"
@@ -92,7 +136,11 @@ function Login() {
                 name="password"
                 type={passwordShown ? "text" : "password"}
                 className="peer focus:outline-none w-full"
-              ></input>
+                value={form.password}
+                onChange={onChangeForm}
+                placeholder="Enter your password"
+                required
+              />
               <button type="button" onClick={togglePass}>
                 <svg
                   width="22"
@@ -132,7 +180,8 @@ function Login() {
             </label>
             <button
               type="submit"
-              className="btn btn-block  bg-primary border-2 border-white capitalize hover:bg-primary-focus hover:border-gray-200"
+              className="submit btn btn-block bg-primary border-2 border-white capitalize hover:bg-primary-focus hover:border-gray-200 "
+              disabled={!form.email || (!form.password && true)}
             >
               Login
             </button>
