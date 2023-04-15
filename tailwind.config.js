@@ -19,6 +19,7 @@ module.exports = {
         "gradient-conic":
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
         "first-content": "url('/img/bg-main.svg')",
+        auth: "url('/img/bg-auth.svg')",
       },
       boxShadow: {
         "card-md": "0px 4px 20px 0px #0000000D",

@@ -10,7 +10,9 @@ const nSans = Nunito_Sans({
 
 export default function App({ Component, pageProps }) {
   return (
-    <main className={nSans.className}>
+    <main
+    // className={nSans.className}
+    >
       <Component {...pageProps} />
     </main>
   );

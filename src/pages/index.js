@@ -36,9 +36,12 @@ export default function Home() {
             <Link href={"/"}>FazzPay</Link>
           </h1>
           <div className="flex gap-7">
-            <button className="btn bg-primary border-2 border-white capitalize text-lg px-8 hover:bg-primary-focus hover:border-gray-200">
+            <Link
+              className="btn bg-primary border-2 border-white capitalize text-lg px-8 hover:bg-primary-focus hover:border-gray-200"
+              href={"/auth/login"}
+            >
               Login
-            </button>
+            </Link>
             <button className="btn bg-white border-0 hover:bg-gray-200 text-lg text-primary capitalize px-8">
               Sign Up
             </button>
