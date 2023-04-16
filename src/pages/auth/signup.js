@@ -15,7 +15,7 @@ function Signup() {
     email: "",
     password: "",
   });
-  const [error, setError] = useState({ email: "", password: "" });
+  const [error, setError] = useState({ email: "", password: "", register: "" });
   const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
   const { success } = router.query;
@@ -41,7 +41,7 @@ function Signup() {
     e.preventDefault();
     if (!form.email || !form.password || isLoading) return;
     setIsLoading(true);
-    setError({ email: "", password: "" });
+    setError({ email: "", password: "", register: "" });
     api
       .post("/auth/register", form)
       .then((data) => {
@@ -51,17 +51,18 @@ function Signup() {
       .catch((err) => {
         setIsLoading(false);
         if (err.response?.data?.msg === "Email already exist") {
-          setError({ email: "Email already registered!" });
+          return setError({ email: "Email already registered!" });
         }
         if (
           err.response?.data?.msg ===
           "You have registered with this email please activate the email"
         ) {
-          setError({
+          return setError({
             email:
               "You have registered with this email, please activate the email",
           });
         }
+        setError({ register: "An error occurred" });
         console.log(err);
       });
   };
@@ -322,7 +323,7 @@ function Signup() {
               </label>
 
               <p className="min-h-6 text-center text-error text-sm flex items-center justify-center gap-1">
-                {error.email ? (
+                {error.email || error.register ? (
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
@@ -339,7 +340,7 @@ function Signup() {
                 ) : (
                   ""
                 )}
-                {error.email ?? error.password ?? ""}
+                {error.email ?? error.password ?? error.register ?? ""}
               </p>
               <button
                 type="submit"
