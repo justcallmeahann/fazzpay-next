@@ -7,7 +7,7 @@ import AuthSidebar from "@/components/authSidebar";
 import Layout from "@/components/layout";
 import api from "@/services/api";
 
-function Login() {
+function Signup() {
   const [passwordShown, setPasswordShown] = useState(false);
   const [form, setForm] = useState({
     firstName: "",
@@ -370,4 +370,4 @@ function Login() {
   );
 }
 
-export default Login;
+export default Signup;
