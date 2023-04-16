@@ -1,7 +1,6 @@
 import { useState } from "react";
 
 import Link from "next/link";
-import { toast } from "react-toastify";
 
 import AuthSidebar from "@/components/authSidebar";
 import Layout from "@/components/layout";
@@ -11,6 +10,7 @@ function Login() {
   const [passwordShown, setPasswordShown] = useState(false);
   const [form, setForm] = useState({ email: "", password: "" });
   const [error, setError] = useState({ email: "", password: "" });
+  const [isLoading, setIsLoading] = useState(false);
 
   const togglePass = (e) => {
     e.preventDefault();
@@ -26,28 +26,37 @@ function Login() {
     });
   };
 
-  const submitHandler = (e) => {
+  const submitHandler = async (e) => {
     e.preventDefault();
-    if (!form.email || !form.password) return;
-    e.target[3].disabled = true;
-    toast.promise(api.post("/auth/login", form), {
-      pending: "Please wait",
-      error: {
-        render({ data }) {
-          e.target[3].disabled = false;
-          if (data.response?.data?.msg === "Account not active") {
-            return "Please activate your account";
-          }
-          return "Wrong email or password";
-        },
-      },
-      success: {
-        render({ data }) {
-          e.target[3].disabled = false;
-          return "Success login";
-        },
-      },
-    });
+    if (!form.email || !form.password || isLoading) return;
+    setIsLoading(true);
+    api
+      .post("/auth/login", form)
+      .then((data) => {
+        setIsLoading(false);
+        console.log(data);
+      })
+      .catch((error) => {
+        setIsLoading(false);
+        console.log(error);
+      });
+    // toast.promise(api.post("/auth/login", form), {
+    //   pending: "Please wait",
+    //   error: {
+    //     render({ data }) {
+    //       e.target[3].disabled = false;
+    //       if (data.response?.data?.msg === "Account not active") {
+    //         return "Please activate your account";
+    //       }
+    //       return "Wrong email or password";
+    //     },
+    //   },
+    //   success: {
+    //     render({ data }) {
+    //       return "Success login";
+    //     },
+    //   },
+    // });
   };
 
   return (
@@ -183,8 +192,10 @@ function Login() {
             </label>
             <button
               type="submit"
-              className="submit btn btn-block bg-primary border-2 border-white capitalize hover:bg-primary-focus hover:border-gray-200 "
-              disabled={!form.email || (!form.password && true)}
+              className={`submit btn btn-block bg-primary border-2 border-white capitalize hover:bg-primary-focus hover:border-gray-200 ${
+                isLoading ? "loading" : ""
+              }`}
+              disabled={!form.email || !form.password || (isLoading && true)}
             >
               Login
             </button>

@@ -42,9 +42,12 @@ export default function Home() {
             >
               Login
             </Link>
-            <button className="btn bg-white border-0 hover:bg-gray-200 text-lg text-primary capitalize px-8">
+            <Link
+              className="btn bg-white border-0 hover:bg-gray-200 text-lg text-primary capitalize px-8"
+              href={"/auth/signup"}
+            >
               Sign Up
-            </button>
+            </Link>
           </div>
         </div>
       </header>
