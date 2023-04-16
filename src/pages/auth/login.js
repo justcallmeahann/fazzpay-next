@@ -9,7 +9,7 @@ import api from "@/services/api";
 function Login() {
   const [passwordShown, setPasswordShown] = useState(false);
   const [form, setForm] = useState({ email: "", password: "" });
-  const [error, setError] = useState({ email: "", password: "" });
+  const [error, setError] = useState({ email: "", password: "", login: "" });
   const [isLoading, setIsLoading] = useState(false);
 
   const togglePass = (e) => {
@@ -18,6 +18,7 @@ function Login() {
   };
 
   const onChangeForm = (e) => {
+    setError({ ...error, [e.target.name]: "" });
     return setForm((form) => {
       return {
         ...form,
@@ -34,36 +35,26 @@ function Login() {
       .post("/auth/login", form)
       .then((data) => {
         setIsLoading(false);
-        console.log(data);
+        console.log("success login");
       })
-      .catch((error) => {
+      .catch((err) => {
         setIsLoading(false);
-        console.log(error);
+        if (err.response?.data?.msg === "Account not active") {
+          return setError({ login: "Please activate your account first!" });
+        }
+        setError({
+          email: "Incorrect email or password",
+          password: "Incorrect email or password",
+        });
+        // console.log(error);
       });
-    // toast.promise(api.post("/auth/login", form), {
-    //   pending: "Please wait",
-    //   error: {
-    //     render({ data }) {
-    //       e.target[3].disabled = false;
-    //       if (data.response?.data?.msg === "Account not active") {
-    //         return "Please activate your account";
-    //       }
-    //       return "Wrong email or password";
-    //     },
-    //   },
-    //   success: {
-    //     render({ data }) {
-    //       return "Success login";
-    //     },
-    //   },
-    // });
   };
 
   return (
     <Layout title={"Login - Fazzpay"}>
       <main className="flex">
         <AuthSidebar className="flex-[5_5_0%] h-screen" />
-        <section className="flex-[4_4_0%] h-screen flex flex-col justify-center global-px pl-10">
+        <section className="flex-[4_4_0%] h-screen flex flex-col justify-center global-px pl-10 gap-6">
           <h2 className="font-bold text-2xl text-dark">
             Start Accessing Banking Needs With All Devices and All Platforms
             With 30.000+ Users
@@ -73,14 +64,16 @@ function Login() {
             wherever you are. Desktop, laptop, mobile phone? we cover all of
             that for you!
           </p>
-          <form onSubmit={submitHandler} className="text-dark">
+          <form onSubmit={submitHandler} className="text-dark space-y-4">
             <label
               htmlFor="email"
               className={`border-b-2 ${
                 form.email !== ""
-                  ? "border-primary stroke-primary"
+                  ? error.email
+                    ? "border-error stroke-error"
+                    : "border-primary stroke-primary"
                   : "border-gray-400 stroke-gray-500"
-              } flex gap-4 px-1 py-1 items-center focus-within:border-primary duration-150 focus-within:stroke-primary placeholder-shown:border-gray-400`}
+              } flex gap-4 px-1 py-2 items-center focus-within:border-primary duration-150 focus-within:stroke-primary placeholder-shown:border-gray-400`}
             >
               <svg
                 width="22"
@@ -118,9 +111,11 @@ function Login() {
               htmlFor="password"
               className={`border-b-2 ${
                 form.password !== ""
-                  ? "border-primary stroke-primary"
+                  ? error.password
+                    ? "border-error stroke-error"
+                    : "border-primary stroke-primary"
                   : "border-gray-400 stroke-gray-500"
-              } flex gap-4 px-1 py-1 items-center focus-within:border-primary duration-150 focus-within:stroke-primary placeholder-shown:border-gray-400`}
+              } flex gap-4 px-1 py-2 items-center focus-within:border-primary duration-150 focus-within:stroke-primary placeholder-shown:border-gray-400`}
             >
               <svg
                 width="24"
@@ -190,6 +185,34 @@ function Login() {
                 </svg>
               </button>
             </label>
+            <div className="text-right">
+              <Link
+                href={"/auth/forgotpass"}
+                className="text-dark opacity-80 text-sm"
+              >
+                Forgot Password?
+              </Link>
+            </div>
+            <p className="min-h-6 text-center text-error text-sm flex items-center justify-center gap-1">
+              {error.email || error.login ? (
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  className="inline-block w-4 h-4 stroke-current"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d="M6 18L18 6M6 6l12 12"
+                  ></path>
+                </svg>
+              ) : (
+                ""
+              )}
+              {error.email ?? error.password ?? error.login ?? ""}
+            </p>
             <button
               type="submit"
               className={`submit btn btn-block bg-primary border-2 border-white capitalize hover:bg-primary-focus hover:border-gray-200 ${
