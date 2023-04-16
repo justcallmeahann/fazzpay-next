@@ -9,7 +9,12 @@ import api from "@/services/api";
 
 function Login() {
   const [passwordShown, setPasswordShown] = useState(false);
-  const [form, setForm] = useState({ email: "", password: "" });
+  const [form, setForm] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    password: "",
+  });
   const [error, setError] = useState({ email: "", password: "" });
 
   const togglePass = (e) => {
@@ -29,22 +34,23 @@ function Login() {
   const submitHandler = (e) => {
     e.preventDefault();
     if (!form.email || !form.password) return;
-    e.target[3].disabled = true;
-    toast.promise(api.post("/auth/login", form), {
+    e.target[5].disabled = true;
+
+    toast.promise(api.post("/auth/register", form), {
       pending: "Please wait",
       error: {
         render({ data }) {
-          e.target[3].disabled = false;
-          if (data.response?.data?.msg === "Account not active") {
-            return "Please activate your account";
-          }
+          console.log();
+          e.target[5].disabled = false;
+          console.log(data.response.data.msg);
           return "Wrong email or password";
         },
       },
       success: {
         render({ data }) {
-          e.target[3].disabled = false;
-          return "Success login";
+          e.target[5].disabled = false;
+          console.log(data);
+          return "Success register";
         },
       },
     });
@@ -54,24 +60,92 @@ function Login() {
     <Layout title={"Login - Fazzpay"}>
       <main className="flex">
         <AuthSidebar className="flex-[5_5_0%] h-screen" />
-        <section className="flex-[4_4_0%] h-screen flex flex-col justify-center global-px pl-10">
-          <h2 className="font-bold text-2xl text-dark">
+        <section className="flex-[4_4_0%] h-screen flex flex-col justify-center global-px pl-10 gap-5">
+          <h2 className="font-bold text-2xl text-dark max-w-sm">
             Start Accessing Banking Needs With All Devices and All Platforms
             With 30.000+ Users
           </h2>
-          <p className="text-dark text-opacity-60">
+          <p className="text-dark text-opacity-60 max-w-md">
             Transfering money is eassier than ever, you can access FazzPay
             wherever you are. Desktop, laptop, mobile phone? we cover all of
             that for you!
           </p>
-          <form onSubmit={submitHandler} className="text-dark">
+          <form onSubmit={submitHandler} className="text-dark space-y-4">
+            <label
+              htmlFor="firstName"
+              className={`border-b-2 ${
+                form.firstName !== ""
+                  ? "border-primary stroke-primary"
+                  : "border-gray-400 stroke-gray-500"
+              } flex gap-4 px-1 py-2 items-center focus-within:border-primary duration-150 focus-within:stroke-primary placeholder-shown:border-gray-400`}
+            >
+              <svg
+                width="22"
+                height="18"
+                viewBox="0 0 18 18"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M1 17C1 14 5 14 7 12C8 11 5 11 5 6C5 2.667 6.333 1 9 1C11.667 1 13 2.667 13 6C13 11 10 11 11 12C13 14 17 14 17 17"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
+
+              <input
+                id="firstName"
+                name="firstName"
+                type="text"
+                className="peer focus:outline-none w-full font-medium placeholder:font-normal capitalize"
+                onChange={onChangeForm}
+                value={form.firstName}
+                placeholder="Enter your firstname"
+                required
+              ></input>
+            </label>
+            <label
+              htmlFor="lastName"
+              className={`border-b-2 ${
+                form.lastName !== ""
+                  ? "border-primary stroke-primary"
+                  : "border-gray-400 stroke-gray-500"
+              } flex gap-4 px-1 py-2 items-center focus-within:border-primary duration-150 focus-within:stroke-primary placeholder-shown:border-gray-400`}
+            >
+              <svg
+                width="22"
+                height="18"
+                viewBox="0 0 18 18"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M1 17C1 14 5 14 7 12C8 11 5 11 5 6C5 2.667 6.333 1 9 1C11.667 1 13 2.667 13 6C13 11 10 11 11 12C13 14 17 14 17 17"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
+
+              <input
+                id="lastName"
+                name="lastName"
+                type="text"
+                className="peer focus:outline-none w-full font-medium placeholder:font-normal capitalize"
+                onChange={onChangeForm}
+                value={form.lastName}
+                placeholder="Enter your lastname"
+                required
+              ></input>
+            </label>
             <label
               htmlFor="email"
               className={`border-b-2 ${
                 form.email !== ""
                   ? "border-primary stroke-primary"
                   : "border-gray-400 stroke-gray-500"
-              } flex gap-4 px-1 py-1 items-center focus-within:border-primary duration-150 focus-within:stroke-primary placeholder-shown:border-gray-400`}
+              } flex gap-4 px-1 py-2 items-center focus-within:border-primary duration-150 focus-within:stroke-primary placeholder-shown:border-gray-400`}
             >
               <svg
                 width="22"
@@ -98,7 +172,7 @@ function Login() {
                 id="email"
                 name="email"
                 type="email"
-                className="peer focus:outline-none w-full"
+                className="peer focus:outline-none w-full font-medium placeholder:font-normal"
                 onChange={onChangeForm}
                 value={form.email}
                 placeholder="Enter your e-mail"
@@ -111,7 +185,7 @@ function Login() {
                 form.password !== ""
                   ? "border-primary stroke-primary"
                   : "border-gray-400 stroke-gray-500"
-              } flex gap-4 px-1 py-1 items-center focus-within:border-primary duration-150 focus-within:stroke-primary placeholder-shown:border-gray-400`}
+              } flex gap-4 px-1 py-2 items-center focus-within:border-primary duration-150 focus-within:stroke-primary placeholder-shown:border-gray-400`}
             >
               <svg
                 width="24"
@@ -138,7 +212,7 @@ function Login() {
                 id="password"
                 name="password"
                 type={passwordShown ? "text" : "password"}
-                className="peer focus:outline-none w-full"
+                className="peer focus:outline-none w-full font-medium placeholder:font-normal"
                 value={form.password}
                 onChange={onChangeForm}
                 placeholder="Enter your password"
@@ -181,18 +255,24 @@ function Login() {
                 </svg>
               </button>
             </label>
+            <p></p>
             <button
               type="submit"
-              className="submit btn btn-block bg-primary border-2 border-white capitalize hover:bg-primary-focus hover:border-gray-200 "
-              disabled={!form.email || (!form.password && true)}
+              className="submit btn btn-block bg-primary border-2 border-white capitalize hover:bg-primary-focus hover:border-gray-200"
+              disabled={
+                !form.email ||
+                !form.firstName ||
+                !form.lastName ||
+                (!form.password && true)
+              }
             >
-              Login
+              Sign Up
             </button>
           </form>
           <p className="text-dark text-opacity-80 text-center">
-            Don’t have an account? Let’s{" "}
-            <Link className="text-primary font-semibold" href={"/auth/signup"}>
-              Sign Up
+            Already have an account? Let’s{" "}
+            <Link className="text-primary font-semibold" href={"/auth/login"}>
+              Login
             </Link>
           </p>
         </section>
