@@ -1,12 +1,12 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 
-import Link from "next/link";
-import { useRouter } from "next/router";
+import Link from 'next/link';
+import { useRouter } from 'next/router';
 
-import ForgotPassSuccess from "@/components/auth/forgotPassSuccess";
-import AuthSidebar from "@/components/authSidebar";
-import Layout from "@/components/layout";
-import api from "@/services/api";
+import ForgotPassSuccess from '@/components/auth/forgotPassSuccess';
+import AuthSidebar from '@/components/authSidebar';
+import Layout from '@/components/layout';
+import api from '@/services/api';
 
 function ForgotPass() {
   const [error, setError] = useState("");
@@ -41,7 +41,7 @@ function ForgotPass() {
       });
   };
   return (
-    <Layout title={"Forgot Password - Fazzpay"}>
+    <Layout title={"Forgot Password"}>
       <main className="flex">
         <AuthSidebar className="flex-[5_5_0%] h-screen" />
         {success ? (

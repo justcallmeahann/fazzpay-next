@@ -1,9 +1,9 @@
-import Image from "next/image";
-import Link from "next/link";
+import Image from 'next/image';
+import Link from 'next/link';
 
 function AuthSidebar({ className }) {
   return (
-    <sidebar
+    <aside
       className={`${className} flex flex-col bg-auth text-white global-px pr-2`}
     >
       <header className=" font-semibold text-3xl pt-7">
@@ -27,7 +27,7 @@ function AuthSidebar({ className }) {
           coverage.
         </p>
       </section>
-    </sidebar>
+    </aside>
   );
 }
 

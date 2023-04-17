@@ -1,11 +1,11 @@
-import { useState } from "react";
+import { useState } from 'react';
 
-import Link from "next/link";
-import { useRouter } from "next/router";
+import Link from 'next/link';
+import { useRouter } from 'next/router';
 
-import AuthSidebar from "@/components/authSidebar";
-import Layout from "@/components/layout";
-import api from "@/services/api";
+import AuthSidebar from '@/components/authSidebar';
+import Layout from '@/components/layout';
+import api from '@/services/api';
 
 function Signup() {
   const [passwordShown, setPasswordShown] = useState(false);
@@ -68,7 +68,7 @@ function Signup() {
   };
 
   return (
-    <Layout title={"Signup - Fazzpay"}>
+    <Layout title={"Signup"}>
       <main className="flex">
         <AuthSidebar className="flex-[5_5_0%] h-screen" />
         {success ? (

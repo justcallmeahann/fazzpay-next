@@ -1,9 +1,12 @@
-import { useEffect, useState } from "react";
+import {
+  useEffect,
+  useState,
+} from 'react';
 
-import Image from "next/image";
-import Link from "next/link";
+import Image from 'next/image';
+import Link from 'next/link';
 
-import Layout from "@/components/layout";
+import Layout from '@/components/layout';
 
 export default function Home() {
   const [scrollOpacity, setScrollOpacity] = useState(0);
@@ -25,7 +28,7 @@ export default function Home() {
   let year = d.getFullYear();
 
   return (
-    <Layout title={"Fazzpay"}>
+    <Layout>
       <header
         className={`fixed w-full z-10 bg-primary duration-300  ${
           scrollOpacity > 0 ? "bg-opacity-90 backdrop-blur-sm" : "bg-opacity-0"

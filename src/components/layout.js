@@ -4,7 +4,7 @@ function Layout({ title, children }) {
   return (
     <>
       <Head>
-        <title>{title || "No Title"}</title>
+        <title>{title ? `${title}  —` : ""} FazzPay</title>
       </Head>
       {children}
     </>

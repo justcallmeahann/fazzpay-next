@@ -1,13 +1,13 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 
-import Link from "next/link";
-import { useRouter } from "next/router";
+import Link from 'next/link';
+import { useRouter } from 'next/router';
 
-import ResetPassExpired from "@/components/auth/resetPassExpired";
-import ResetPassSuccess from "@/components/auth/resetPassSuccess";
-import AuthSidebar from "@/components/authSidebar";
-import Layout from "@/components/layout";
-import api from "@/services/api";
+import ResetPassExpired from '@/components/auth/resetPassExpired';
+import ResetPassSuccess from '@/components/auth/resetPassSuccess';
+import AuthSidebar from '@/components/authSidebar';
+import Layout from '@/components/layout';
+import api from '@/services/api';
 
 function ResetPass({ isValid, code }) {
   const [error, setError] = useState({
@@ -60,7 +60,7 @@ function ResetPass({ isValid, code }) {
       });
   };
   return (
-    <Layout title={"Forgot Password - Fazzpay"}>
+    <Layout title={"Reset Password"}>
       <main className="flex">
         <AuthSidebar className="flex-[5_5_0%] h-screen" />
         {success ? (

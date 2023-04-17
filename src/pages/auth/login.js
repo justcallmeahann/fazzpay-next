@@ -1,10 +1,10 @@
-import { useState } from "react";
+import { useState } from 'react';
 
-import Link from "next/link";
+import Link from 'next/link';
 
-import AuthSidebar from "@/components/authSidebar";
-import Layout from "@/components/layout";
-import api from "@/services/api";
+import AuthSidebar from '@/components/authSidebar';
+import Layout from '@/components/layout';
+import api from '@/services/api';
 
 function Login() {
   const [passwordShown, setPasswordShown] = useState(false);
@@ -51,7 +51,7 @@ function Login() {
   };
 
   return (
-    <Layout title={"Login - Fazzpay"}>
+    <Layout title={"Login"}>
       <main className="flex">
         <AuthSidebar className="flex-[5_5_0%] h-screen" />
         <section className="flex-[4_4_0%] h-screen flex flex-col justify-center global-px pl-10 gap-6">
