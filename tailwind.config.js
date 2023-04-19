@@ -26,6 +26,7 @@ module.exports = {
       },
       boxShadow: {
         "card-md": "0px 4px 20px 0px #0000000D",
+        "card-lg": "0px 4px 20px 0px #BBBBBB40",
       },
     },
   },

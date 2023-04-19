@@ -187,7 +187,7 @@ function Dashboard() {
               </ul>
             </div>
           </aside>
-          <section className="mt-28 mb-[5.5rem] ml-72 w-full space-y-5">
+          <section className="mt-28 mb-6 ml-72 w-full space-y-5">
             <div className="bg-primary rounded-3xl text-white p-8 flex justify-between">
               <div className="flex flex-col justify-between">
                 <p className="text-primary-context">Balance</p>
@@ -248,7 +248,7 @@ function Dashboard() {
               </div>
             </div>
             <div className="flex gap-5 text-dark">
-              <section className="flex-[3_3_0%] h-screen bg-white rounded-3xl shadow-card-md p-6">
+              <section className="flex-[3_3_0%]  bg-white rounded-3xl shadow-card-md p-6">
                 <div className="flex justify-between mt-3 px-3">
                   <div className="flex flex-col gap-2">
                     <svg
@@ -301,6 +301,23 @@ function Dashboard() {
                     </svg>
                     <p className="text-opacity-20 text-sm mt-1">Expense</p>
                     <p className="font-semibold text-lg">Rp1.560.000</p>
+                  </div>
+                </div>
+                <div class="flex">
+                  <div className="flex-1 flex flex-col gap-3">
+                    <div className="h-52 flex justify-center relative">
+                      <div className="flex w-4 rounded-3xl h-[20%] bg-primary mt-auto peer relative group">
+                        <div className="h-4 w-4 bg-primary rounded-full invisible group-hover:visible outline-white outline-4 outline absolute duration-200 drop-shadow-card-lg"></div>
+                        <div className="absolute bg-white -top-12 m-auto invisible group-hover:visible transition-all z-10">
+                          <p className="text-income px-3 py-2 text-sm shadow-card-md rounded-xl">
+                            +Rp65.000
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="text-center px-1 text-opacity-70 text-sm">
+                      Sat
+                    </div>
                   </div>
                 </div>
               </section>
