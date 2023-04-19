@@ -12,8 +12,10 @@ module.exports = {
         "primary-focus": "#4257B2",
         "primary-context": "#EFEFEF",
         secondary: "#FFFFFF",
+        dashboard: "#fafcff",
         dark: "#3A3D42",
         error: "#FF5B37",
+        income: "#1EC15F",
       },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
