@@ -12,6 +12,7 @@ module.exports = {
         "primary-focus": "#4257B2",
         "primary-context": "#EFEFEF",
         secondary: "#FFFFFF",
+        "secondary-context": "#7A7886",
         dashboard: "#fafcff",
         dark: "#3A3D42",
         error: "#FF5B37",

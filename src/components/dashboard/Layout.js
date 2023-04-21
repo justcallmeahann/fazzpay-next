@@ -7,7 +7,7 @@ function DashboardLayout({ title, className, children }) {
   return (
     <Layout title={title} className={className}>
       <Header />
-      <main className="relative flex global-px bg-dashboard">
+      <main className="relative flex global-px bg-dashboard min-h-screen">
         <Sidebar />
         <section className="mt-28 mb-6 ml-72 w-full space-y-5">
           {children}
