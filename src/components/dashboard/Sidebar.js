@@ -1,5 +1,8 @@
+import { useEffect } from 'react';
+
 import Link from 'next/link';
 import { useRouter } from 'next/router';
+import { useSelector } from 'react-redux';
 
 function Sidebar() {
   const router = useRouter();
@@ -8,6 +11,10 @@ function Sidebar() {
     active: "border-primary stroke-primary text-primary  font-semibold",
     inactive: "border-white stroke-dark",
   };
+  const stateAuth = useSelector((state) => state.auth);
+  useEffect(() => {
+    console.log(stateAuth);
+  }, [stateAuth]);
   return (
     <aside className="relative">
       <div className="py-6 fixed mt-28 w-[16rem] bg-white rounded-3xl shadow-card-md h-[70vh] text-dark">

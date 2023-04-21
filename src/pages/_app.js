@@ -1,8 +1,15 @@
-import "@/styles/globals.css";
-import "react-toastify/dist/ReactToastify.css";
+import '@/styles/globals.css';
+import 'react-toastify/dist/ReactToastify.css';
 
-import { Nunito_Sans } from "next/font/google";
-import { ToastContainer } from "react-toastify";
+import { Nunito_Sans } from 'next/font/google';
+import { Provider } from 'react-redux';
+import { ToastContainer } from 'react-toastify';
+import { PersistGate } from 'redux-persist/integration/react';
+
+import {
+  persistor,
+  store,
+} from '@/store';
 
 const nSans = Nunito_Sans({
   weight: ["200", "300", "400", "600", "700", "800", "900"],
@@ -32,24 +39,29 @@ export default function App({ Component, pageProps }) {
   //   };
   // }, [router]);
   return (
-    <main
-    // className={nSans.className}
-    >
-      {/* <Progress isAnimating={prg.isAnimating} /> */}
-      <Component {...pageProps} />
-      {/* </Progress> */}
-      <ToastContainer
-        position="bottom-right"
-        autoClose={5000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme="light"
-      />
-    </main>
+    <Provider store={store}>
+      <PersistGate loading={null} persistor={persistor}>
+        <main
+        // className={nSans.className}
+        >
+          {/* <Progress isAnimating={prg.isAnimating} /> */}
+
+          <Component {...pageProps} />
+          {/* </Progress> */}
+          <ToastContainer
+            position="bottom-right"
+            autoClose={5000}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+            theme="light"
+          />
+        </main>
+      </PersistGate>
+    </Provider>
   );
 }
