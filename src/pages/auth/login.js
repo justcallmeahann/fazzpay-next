@@ -1,16 +1,28 @@
-import { useState } from 'react';
+import { useEffect, useState } from "react";
 
-import Link from 'next/link';
+import Link from "next/link";
+import { useRouter } from "next/router";
+import { useDispatch, useSelector } from "react-redux";
 
-import AuthSidebar from '@/components/authSidebar';
-import Layout from '@/components/layout';
-import api from '@/services/api';
+import AuthSidebar from "@/components/authSidebar";
+import Layout from "@/components/layout";
+import api from "@/services/api";
+import { pinAction } from "@/store/slices/setPin";
 
 function Login() {
+  // local state
   const [passwordShown, setPasswordShown] = useState(false);
   const [form, setForm] = useState({ email: "", password: "" });
   const [error, setError] = useState({ email: "", password: "", login: "" });
   const [isLoading, setIsLoading] = useState(false);
+
+  // redux state
+  const auth = useSelector((state) => state.auth);
+  const pin = useSelector((state) => state.pin);
+
+  const dispatch = useDispatch();
+
+  const router = useRouter();
 
   const togglePass = (e) => {
     e.preventDefault();
@@ -35,7 +47,19 @@ function Login() {
       .post("/auth/login", form)
       .then((data) => {
         setIsLoading(false);
-        console.log("success login");
+        const response = data?.data?.data;
+
+        if (!response.pin) {
+          dispatch(
+            pinAction.setPin({
+              id: response?.id,
+              token: response?.token,
+            })
+          );
+          router.push("/auth/set-pin");
+          return;
+        }
+        // console.log(data.data.data);
       })
       .catch((err) => {
         setIsLoading(false);
@@ -49,6 +73,10 @@ function Login() {
         // console.log(error);
       });
   };
+
+  useEffect(() => {
+    console.log(pin);
+  }, [pin]);
 
   return (
     <Layout title={"Login"}>

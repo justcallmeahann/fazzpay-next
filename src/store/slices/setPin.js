@@ -5,11 +5,11 @@ const initialState = {
   token: "",
 };
 
-const authSlice = createSlice({
-  name: "auth",
+const pinSlice = createSlice({
+  name: "pin",
   initialState,
   reducers: {
-    assignAuth: (prevState, action) => {
+    setPin: (prevState, action) => {
       const { id, token } = action.payload;
       return {
         ...prevState,
@@ -17,12 +17,12 @@ const authSlice = createSlice({
         token: token,
       };
     },
-    dismissAuth: (prevState) => {
+    clear: (prevState) => {
       return {
         ...initialState,
       };
     },
   },
 });
-export const authAction = authSlice.actions;
-export default authSlice.reducer;
+export const pinAction = pinSlice.actions;
+export default pinSlice.reducer;
