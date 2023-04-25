@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 
+import { parsePhoneNumber } from "awesome-phonenumber";
 import Image from "next/image";
 import Link from "next/link";
 import { useDispatch, useSelector } from "react-redux";
@@ -27,6 +28,8 @@ function Header() {
     dispatch(profileAction.getProfileThunk(auth));
   }, []);
 
+  const pn = parsePhoneNumber(profile.data?.noTelp, { regionCode: "ID" });
+
   return (
     <header className="fixed w-full top-0 flex bg-white shadow-[0_4px_20px_0_rgba(0,0,0,0.05)] rounded-b-3xl global-px py-6 items-center justify-between z-20">
       <h1 className="text-primary text-3xl font-semibold">
@@ -41,7 +44,7 @@ function Header() {
         <div className="text-dark h-18 flex flex-col justify-between">
           <p className="font-semibold text-lg">{`${profile.data?.firstName} ${profile.data?.lastName}`}</p>
           {profile.data?.noTelp ? (
-            <p className="text-opacity-90 text-sm">{profile.data?.noTelp}</p>
+            <p className="text-opacity-90 text-sm">{pn.number.international}</p>
           ) : (
             ""
           )}
