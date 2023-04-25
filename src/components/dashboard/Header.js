@@ -24,7 +24,6 @@ function Header() {
     //     console.log(err.message);
     //   }
     // );
-    console.log(profile);
     dispatch(profileAction.getProfileThunk(auth));
   }, []);
 

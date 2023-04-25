@@ -1,8 +1,10 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+
+import { topupAction } from "@/store/slices/topup";
 
 import Topup from "./Topup";
 
@@ -13,17 +15,16 @@ function Sidebar() {
     active: "border-primary stroke-primary text-primary  font-semibold",
     inactive: "border-white stroke-dark",
   };
-  const stateAuth = useSelector((state) => state.auth);
-
-  useEffect(() => {
-    console.log(stateAuth);
-  }, [stateAuth]);
-
+  const dispatch = useDispatch();
+  const topup = useSelector((state) => state.topup);
   const [openTopup, setOpenTopup] = useState(false);
 
   return (
     <>
-      <Topup isOpen={openTopup} onClose={() => setOpenTopup(false)} />
+      <Topup
+        isOpen={topup.isOpen}
+        onClose={() => dispatch(topupAction.close())}
+      />
       <aside className="relative">
         <div className="py-6 fixed mt-28 w-[16rem] bg-white rounded-3xl shadow-card-md h-[70vh] text-dark">
           <ul className="flex flex-col h-full">
@@ -108,7 +109,7 @@ function Sidebar() {
             <li>
               <button
                 onClick={() => {
-                  setOpenTopup(!openTopup);
+                  dispatch(topupAction.toggle());
                 }}
                 className={`${
                   currentRoute === "/dashboard/topup"

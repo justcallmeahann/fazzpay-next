@@ -4,6 +4,7 @@ const initialState = {
   amount: 0,
   redirectUrl: "",
   token: "",
+  isOpen: false,
 };
 
 const topupSlice = createSlice({
@@ -17,6 +18,18 @@ const topupSlice = createSlice({
         amount,
         redirectUrl,
         token,
+      };
+    },
+    toggle: (prevState) => {
+      return {
+        ...prevState,
+        isOpen: !prevState.isOpen,
+      };
+    },
+    close: (prevState) => {
+      return {
+        ...prevState,
+        isOpen: false,
       };
     },
     clear: (prevState) => {
