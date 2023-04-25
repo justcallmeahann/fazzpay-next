@@ -7,12 +7,12 @@ import {
   PURGE,
   REGISTER,
   REHYDRATE,
-} from 'redux-persist';
-import storage from 'redux-persist/lib/storage';
+} from "redux-persist";
+import storage from "redux-persist/lib/storage";
 
-import { configureStore } from '@reduxjs/toolkit';
+import { configureStore } from "@reduxjs/toolkit";
 
-import reducers from './slices';
+import reducers from "./slices";
 
 const persistConfig = {
   key: process.env.NEXT_PUBLIC_FINGERPRINT_NAME,

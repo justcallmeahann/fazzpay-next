@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import AuthSidebar from "@/components/authSidebar";
 import Layout from "@/components/layout";
 import api from "@/services/api";
+import { authAction } from "@/store/slices/authInfo";
 import { pinAction } from "@/store/slices/setPin";
 
 function Login() {
@@ -59,6 +60,12 @@ function Login() {
           router.push("/auth/set-pin");
           return;
         }
+
+        dispatch(
+          authAction.assignAuth({ id: response?.id, token: response?.token })
+        );
+        router.push("/dashboard");
+
         // console.log(data.data.data);
       })
       .catch((err) => {

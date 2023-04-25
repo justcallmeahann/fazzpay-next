@@ -1,7 +1,32 @@
-import Image from 'next/image';
-import Link from 'next/link';
+import { useEffect } from "react";
+
+import Image from "next/image";
+import Link from "next/link";
+import { useDispatch, useSelector } from "react-redux";
+
+import { profileAction } from "@/store/slices/profile";
 
 function Header() {
+  const profile = useSelector((state) => state.profile);
+  const auth = useSelector((state) => state.auth);
+
+  // const controller = useMemo(() => new AbortController(), []);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    // getUsers(
+    //   controller,
+    //   (res) => {
+    //     console.log(res.data);
+    //   },
+    //   (err) => {
+    //     console.log(err.message);
+    //   }
+    // );
+    console.log(profile);
+    dispatch(profileAction.getProfileThunk(auth));
+  }, []);
+
   return (
     <header className="fixed w-full top-0 flex bg-white shadow-[0_4px_20px_0_rgba(0,0,0,0.05)] rounded-b-3xl global-px py-6 items-center justify-between z-20">
       <h1 className="text-primary text-3xl font-semibold">
@@ -13,9 +38,13 @@ function Header() {
             <Image src="/img/profile.png" alt="" width={40} height={40} />
           </div>
         </div>
-        <div className="text-dark">
-          <p className="font-semibold text-lg">Foo Bar</p>
-          <p className="text-opacity-90 text-sm">+62 8139 3877 7946</p>
+        <div className="text-dark h-18 flex items-center">
+          <p className="font-semibold text-lg">{`${profile.data?.firstName} ${profile.data?.lastName}`}</p>
+          {profile.data?.noTelp ? (
+            <p className="text-opacity-90 text-sm">{profile.data?.noTelp}</p>
+          ) : (
+            ""
+          )}
         </div>
         <div className="m-auto pl-4">
           <svg
