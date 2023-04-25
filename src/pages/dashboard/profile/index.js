@@ -1,15 +1,22 @@
-import Image from 'next/image';
-import Link from 'next/link';
+import Image from "next/image";
+import Link from "next/link";
+import { useSelector } from "react-redux";
 
-import DashboardLayout from '@/components/dashboard/Layout';
+import DashboardLayout from "@/components/dashboard/Layout";
 
 function Profile() {
+  const profile = useSelector((state) => state.profile.data);
   return (
     <DashboardLayout>
       <section className="w-full flex flex-col bg-white rounded-2xl justify-center py-10 gap-2 shadow-card-md">
         <div className="avatar">
           <div className="w-20 h-20 rounded-xl m-auto">
-            <Image src="/img/profile.png" alt="" width={80} height={80} />
+            <Image
+              src={profile.image ?? `/img/profile.png`}
+              alt=""
+              width={80}
+              height={80}
+            />
           </div>
         </div>
         <div className="flex justify-center items-center text-secondary-context gap-1">
@@ -30,8 +37,8 @@ function Profile() {
           Edit
         </div>
         <div className="flex flex-col justify-center text-center gap-2">
-          <p className="text-xl font-semibold">Robert Chan</p>
-          <p className="">+62 813-9387-7946</p>
+          <p className="text-xl font-semibold">{`${profile.firstName} ${profile.lastName}`}</p>
+          <p className="h-5">{profile.noTelp ?? ""}</p>
         </div>
         <div className="flex flex-col w-96 mx-auto font-medium mt-10 gap-5">
           {[

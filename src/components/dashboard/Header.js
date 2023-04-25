@@ -38,7 +38,7 @@ function Header() {
             <Image src="/img/profile.png" alt="" width={40} height={40} />
           </div>
         </div>
-        <div className="text-dark h-18 flex items-center">
+        <div className="text-dark h-18 flex flex-col justify-between">
           <p className="font-semibold text-lg">{`${profile.data?.firstName} ${profile.data?.lastName}`}</p>
           {profile.data?.noTelp ? (
             <p className="text-opacity-90 text-sm">{profile.data?.noTelp}</p>
