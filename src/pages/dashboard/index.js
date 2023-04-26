@@ -7,7 +7,9 @@ import { useRouter } from "next/router";
 import { useDispatch, useSelector } from "react-redux";
 
 import DashboardLayout from "@/components/dashboard/Layout";
+import { env } from "@/services/env";
 import { dashboardAction } from "@/store/slices/dashboard";
+import { historyAction } from "@/store/slices/history";
 import { topupAction } from "@/store/slices/topup";
 import toRupiah from "@develoka/angka-rupiah-js";
 
@@ -15,11 +17,14 @@ function Dashboard() {
   const profile = useSelector((state) => state.profile);
   const auth = useSelector((state) => state.auth);
   const dashboard = useSelector((state) => state.dashboard);
+  const history = useSelector((state) => state.history);
   const router = useRouter();
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(dashboardAction.getDashboardThunk(auth));
+    dispatch(historyAction.getHistoryThunk({ page: 1, token: auth.token }));
+    // dispatch(historyA)
     console.log(dashboard.data.listIncome);
   }, []);
 
@@ -162,7 +167,7 @@ function Dashboard() {
               </p>
             </div>
           </div>
-          <div className="flex mt-10">
+          <div className="flex mt-10 min-h-[10rem]">
             {dashboard.isFulfilled &&
               dashboard.data.listIncome.map(({ day, total }, idx) => {
                 const subtotal = total + dashboard.data.listExpense[idx].total;
@@ -200,25 +205,71 @@ function Dashboard() {
         <div className="flex-[2_2_0%] bg-white rounded-3xl shadow-card-md p-6">
           <div className="flex justify-between">
             <p className="text-lg font-medium">Transaction History</p>
-            <Link className="text-primary" href={""}>
+            <Link className="text-primary" href={"/dashboard/history"}>
               See all
             </Link>
           </div>
-          <section className="mt-7">
-            <div className="flex gap-3">
-              <div className="avatar">
-                <div className="w-14 h-14 rounded-xl m-auto">
-                  <Image src="/img/profile.png" alt="" width={40} height={40} />
-                </div>
-              </div>
-              <div className="flex flex-col justify-center">
-                <p className="font-semibold">Foo Bar</p>
-                <p className="text-opacity-70 text-sm font-light">Accept</p>
-              </div>
-              <div className="ml-auto my-auto">
-                <p className="text-income">+Rp50.000</p>
-              </div>
-            </div>
+          <section className="mt-7 flex flex-col gap-6">
+            {history.data.length > 1 &&
+              history.data.map(({ id, fullName, image, amount, type }, idx) => {
+                let typeTrans = {
+                  name: "",
+                  sign: "",
+                  color: "",
+                };
+                switch (type) {
+                  case "accept":
+                    typeTrans.name = "Accept";
+                    typeTrans.sign = "+";
+                    typeTrans.color = "text-income";
+                    break;
+
+                  case "send":
+                    typeTrans.name = "Transfer";
+                    typeTrans.sign = "-";
+                    typeTrans.color = "text-error";
+                    break;
+
+                  default:
+                    typeTrans.name = "Topup";
+                    typeTrans.sign = "+";
+                    typeTrans.color = "text-error";
+
+                    break;
+                }
+                return (
+                  <div className="flex gap-3" key={id}>
+                    <div className="avatar">
+                      <div className="w-14 h-14 rounded-xl m-auto">
+                        <Image
+                          src={
+                            image
+                              ? `${env.serverImage}${image}`
+                              : "/img/profile.png"
+                          }
+                          alt=""
+                          width={40}
+                          height={40}
+                        />
+                      </div>
+                    </div>
+                    <div className="flex flex-col justify-center">
+                      <p className="font-semibold">{fullName}</p>
+                      <p className="text-opacity-70 text-sm font-light">
+                        {typeTrans.name}
+                      </p>
+                    </div>
+                    <div className="ml-auto my-auto">
+                      <p className={`${typeTrans.color}`}>
+                        {typeTrans.sign}
+                        {toRupiah(amount || 0, {
+                          floatingPoint: 0,
+                        })}
+                      </p>
+                    </div>
+                  </div>
+                );
+              })}
           </section>
         </div>
       </div>

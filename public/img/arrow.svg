@@ -1,0 +1,7 @@
+<svg width="20" height="20" viewBox="0 0 20 20"
+    class=" h-5 ml-2 transition ease-in group-hover:transform group-hover:translate-x-0.5" fill="none"
+    xmlns="http://www.w3.org/2000/svg">
+    <path d="M1.83366 10L18.167 10" stroke="#FFF" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+    <path d="M10.0003 1.83365L18.167 10.0003L10.0003 18.167" stroke="#FFF" strokeWidth="2" strokeLinecap="round"
+        strokeLinejoin="round" />
+</svg>

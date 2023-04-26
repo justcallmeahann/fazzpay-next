@@ -2,7 +2,15 @@ import api from "@/services/api";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  data: {},
+  data: {
+    id: "",
+    firstName: "",
+    lastName: "",
+    email: "",
+    image: "",
+    noTelp: "",
+    balance: 0,
+  },
   isLoading: false,
   isRejected: false,
   isFulfilled: false,
@@ -18,7 +26,8 @@ const getProfileThunk = createAsyncThunk("profile/get", async (payload) => {
     // console.log(response.data.data);
     return response.data.data;
   } catch (err) {
-    return err;
+    // store.dispatch(authAction.dismissAuth());
+    return {};
   }
 });
 
