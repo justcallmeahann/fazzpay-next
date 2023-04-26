@@ -3,6 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   id_user: "",
   token: "",
+  logoutModal: false,
 };
 
 const authSlice = createSlice({
@@ -20,6 +21,24 @@ const authSlice = createSlice({
     dismissAuth: (prevState) => {
       return {
         ...initialState,
+      };
+    },
+    toggleModal: (prevState, action) => {
+      return {
+        ...prevState,
+        logoutModal: !prevState.logoutModal,
+      };
+    },
+    closeModal: (prevState, action) => {
+      return {
+        ...prevState,
+        logoutModal: false,
+      };
+    },
+    openModal: (prevState, action) => {
+      return {
+        ...prevState,
+        logoutModal: true,
       };
     },
   },

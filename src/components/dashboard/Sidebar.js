@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { useDispatch, useSelector } from "react-redux";
 
+import { authAction } from "@/store/slices/authInfo";
 import { topupAction } from "@/store/slices/topup";
 
 import Topup from "./Topup";
@@ -177,40 +178,45 @@ function Sidebar() {
                 Profile
               </Link>
             </li>
-            <li className="border-white border-l-4 px-6 mt-auto mb-3 flex items-center gap-4">
-              <svg
-                width="28"
-                height="28"
-                viewBox="-5 0 30 20"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
+            <li className=" mt-auto ">
+              <button
+                className="border-white border-l-4 px-6 mb-3 flex items-center gap-4"
+                onClick={() => dispatch(authAction.toggleModal())}
               >
-                <path
-                  d="M8.5 22.5H3.83333C3.21449 22.5 2.621 22.2542 2.18342 21.8166C1.74583 21.379 1.5 20.7855 1.5 20.1667V3.83333C1.5 3.21449 1.74583 2.621 2.18342 2.18342C2.621 1.74583 3.21449 1.5 3.83333 1.5H8.5"
-                  stroke="#3A3D42"
-                  strokeOpacity="0.8"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-                <path
-                  d="M16.6667 17.8337L22.5 12.0003L16.6667 6.16699"
-                  stroke="#3A3D42"
-                  strokeOpacity="0.8"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-                <path
-                  d="M22.5 12H8.5"
-                  stroke="#3A3D42"
-                  strokeOpacity="0.8"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              </svg>
-              Logout
+                <svg
+                  width="28"
+                  height="28"
+                  viewBox="-5 0 30 20"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M8.5 22.5H3.83333C3.21449 22.5 2.621 22.2542 2.18342 21.8166C1.74583 21.379 1.5 20.7855 1.5 20.1667V3.83333C1.5 3.21449 1.74583 2.621 2.18342 2.18342C2.621 1.74583 3.21449 1.5 3.83333 1.5H8.5"
+                    stroke="#3A3D42"
+                    strokeOpacity="0.8"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                  <path
+                    d="M16.6667 17.8337L22.5 12.0003L16.6667 6.16699"
+                    stroke="#3A3D42"
+                    strokeOpacity="0.8"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                  <path
+                    d="M22.5 12H8.5"
+                    stroke="#3A3D42"
+                    strokeOpacity="0.8"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
+                Logout
+              </button>
             </li>
           </ul>
         </div>
