@@ -62,14 +62,14 @@ function ResetPass({ isValid, code }) {
   };
   return (
     <Layout title={"Reset Password"}>
-      <main className="flex">
-        <AuthSidebar className="flex-[5_5_0%] h-screen" />
+      <main className="flex flex-col md:flex-row">
+        <AuthSidebar className="md:flex-[5_5_0%] md:h-screen" />
         {success ? (
           <ResetPassSuccess />
         ) : !isValid ? (
           <ResetPassExpired
             className={
-              "flex-[4_4_0%] h-screen flex flex-col justify-center global-px pl-10 gap-7"
+              "flex-[4_4_0%] h-screen flex flex-col justify-center global-px pl-10 gap-7 items-center md:items-start"
             }
           />
         ) : (

@@ -70,8 +70,8 @@ function Signup() {
 
   return (
     <Layout title={"Signup"}>
-      <main className="flex">
-        <AuthSidebar className="flex-[5_5_0%] h-screen" />
+      <main className="flex flex-col md:flex-row">
+        <AuthSidebar className="md:flex-[5_5_0%] md:h-screen" />
         {success ? (
           <section className="flex-[4_4_0%] h-screen flex flex-col justify-center global-px pl-10 gap-7">
             <svg

@@ -1,15 +1,15 @@
-import Image from 'next/image';
-import Link from 'next/link';
+import Image from "next/image";
+import Link from "next/link";
 
 function AuthSidebar({ className }) {
   return (
     <aside
-      className={`${className} flex flex-col bg-auth text-white global-px pr-2`}
+      className={`${className} flex flex-col bg-auth text-white global-px md:pr-2 mb-10 md:mb-0`}
     >
-      <header className=" font-semibold text-3xl pt-7">
+      <header className=" font-semibold text-3xl pt-7 pb-7 md:pb-0 m-auto md:m-0">
         <Link href={"/"}>FazzPay</Link>
       </header>
-      <section className="flex flex-col justify-center w-full">
+      <section className="flex-col justify-center w-full hidden md:flex">
         <Image
           src={"/img/app-image-3.png"}
           width={350}

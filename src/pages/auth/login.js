@@ -88,8 +88,8 @@ function Login() {
 
   return (
     <Layout title={"Login"}>
-      <main className="flex">
-        <AuthSidebar className="flex-[5_5_0%] h-screen" />
+      <main className="flex flex-col md:flex-row">
+        <AuthSidebar className="md:flex-[5_5_0%] md:h-screen" />
         <section className="flex-[4_4_0%] h-screen flex flex-col justify-center global-px pl-10 gap-6">
           <h2 className="font-bold text-2xl text-dark">
             Start Accessing Banking Needs With All Devices and All Platforms

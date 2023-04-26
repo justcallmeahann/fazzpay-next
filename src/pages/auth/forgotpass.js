@@ -43,8 +43,8 @@ function ForgotPass() {
   };
   return (
     <Layout title={"Forgot Password"}>
-      <main className="flex">
-        <AuthSidebar className="flex-[5_5_0%] h-screen" />
+      <main className="flex flex-col md:flex-row">
+        <AuthSidebar className="md:flex-[5_5_0%] md:h-screen" />
         {success ? (
           <ForgotPassSuccess />
         ) : (

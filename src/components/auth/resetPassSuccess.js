@@ -4,7 +4,7 @@ import Link from "next/link";
 
 function ResetPassSuccess() {
   return (
-    <section className="flex-[4_4_0%] h-screen flex flex-col justify-center global-px pl-10 gap-7">
+    <section className="flex-[4_4_0%] h-screen flex flex-col justify-center global-px pl-10 gap-7  items-center md:items-start">
       <svg
         width="70"
         height="70"
