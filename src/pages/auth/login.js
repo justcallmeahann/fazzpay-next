@@ -9,6 +9,7 @@ import Layout from "@/components/layout";
 import api from "@/services/api";
 import { authAction } from "@/store/slices/authInfo";
 import { pinAction } from "@/store/slices/setPin";
+import NoAuthRoute from "@/utils/wrapper/noAuthRoute";
 
 function Login() {
   // local state
@@ -270,4 +271,4 @@ function Login() {
   );
 }
 
-export default Login;
+export default NoAuthRoute(Login);

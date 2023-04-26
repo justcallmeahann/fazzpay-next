@@ -1,13 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
-import Link from 'next/link';
-import { useRouter } from 'next/router';
+import Link from "next/link";
+import { useRouter } from "next/router";
 
-import ResetPassExpired from '@/components/auth/resetPassExpired';
-import ResetPassSuccess from '@/components/auth/resetPassSuccess';
-import AuthSidebar from '@/components/authSidebar';
-import Layout from '@/components/layout';
-import api from '@/services/api';
+import ResetPassExpired from "@/components/auth/resetPassExpired";
+import ResetPassSuccess from "@/components/auth/resetPassSuccess";
+import AuthSidebar from "@/components/authSidebar";
+import Layout from "@/components/layout";
+import api from "@/services/api";
+import NoAuthRoute from "@/utils/wrapper/noAuthRoute";
 
 function ResetPass({ isValid, code }) {
   const [error, setError] = useState({
@@ -331,4 +332,4 @@ export async function getServerSideProps({ query }) {
   };
 }
 
-export default ResetPass;
+export default NoAuthRoute(ResetPass);

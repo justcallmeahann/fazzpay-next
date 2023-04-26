@@ -8,6 +8,7 @@ import Layout from "@/components/layout";
 import api from "@/services/api";
 import { authAction } from "@/store/slices/authInfo";
 import { pinAction } from "@/store/slices/setPin";
+import NoAuthRoute from "@/utils/wrapper/noAuthRoute";
 
 function SetPin() {
   // local state
@@ -162,4 +163,4 @@ function SetPin() {
   );
 }
 
-export default SetPin;
+export default NoAuthRoute(SetPin);

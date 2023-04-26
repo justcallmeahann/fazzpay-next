@@ -25,7 +25,6 @@ function Dashboard() {
     dispatch(dashboardAction.getDashboardThunk(auth));
     dispatch(historyAction.getHistoryThunk({ page: 1, token: auth.token }));
     // dispatch(historyA)
-    console.log(dashboard.data.listIncome);
   }, []);
 
   return (

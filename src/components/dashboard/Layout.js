@@ -2,6 +2,7 @@ import { useRouter } from "next/router";
 import { useDispatch, useSelector } from "react-redux";
 
 import { authAction } from "@/store/slices/authInfo";
+import AuthRoute from "@/utils/wrapper/authRoute";
 
 import Layout from "../layout";
 import Footer from "./Footer";
@@ -33,4 +34,4 @@ function DashboardLayout({ title, className, children }) {
   );
 }
 
-export default DashboardLayout;
+export default AuthRoute(DashboardLayout);

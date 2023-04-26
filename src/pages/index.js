@@ -1,14 +1,48 @@
-import {
-  useEffect,
-  useState,
-} from 'react';
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
-import Image from 'next/image';
-import Link from 'next/link';
+import { useEffect, useState } from "react";
 
-import Layout from '@/components/layout';
+import Image from "next/image";
+import Link from "next/link";
+
+import Layout from "@/components/layout";
 
 export default function Home() {
+  const data = [
+    {
+      fullName: "Sherina Chaw",
+      image: "/images/userDua.png",
+      role: "Designer",
+      comment:
+        "“I use this app since 2 years ago and this is the best app that I’ve ever use in my entire life”",
+    },
+    {
+      fullName: "Jessica Mera",
+      image: "/images/userTiga.png",
+      role: "Developer",
+
+      comment:
+        "“I use Zwallet to manage all financial needs. It’s super easy to use and it’s 100% free app”",
+    },
+    {
+      fullName: "Robert Chandler",
+      image: "/images/userEmpat.png",
+      role: "Corruptor",
+
+      comment:
+        "“Since I’m using this app, I’m not going to move to another similar app. Thank you Zwallet!”",
+    },
+    {
+      fullName: "Alex Hansinburg",
+      image: "/images/userSatu.png",
+      role: "Architect",
+
+      comment:
+        "“This is the most outstanding app that I’ve ever try in my live, this app is such an amazing masterpiece and it’s suitable for you who is bussy with their bussiness and must transfer money to another person aut there. Just try this app and see the power!”",
+    },
+  ];
+
   const [scrollOpacity, setScrollOpacity] = useState(0);
 
   useEffect(() => {
@@ -27,6 +61,27 @@ export default function Home() {
   const d = new Date();
   let year = d.getFullYear();
 
+  const [slide, setSlide] = useState(1);
+
+  const handleSlide = (nav) => {
+    if (nav === "left") {
+      if (slide === 1) setSlide(data.length);
+      else setSlide(slide - 1);
+    }
+    if (nav === "right") {
+      if (slide === data.length) setSlide(1);
+      else setSlide(slide + 1);
+    }
+  };
+
+  const slidePosition = [
+    "",
+    "right-0",
+    "right-[100%]",
+    "right-[200%]",
+    "right-[300%]",
+  ];
+
   return (
     <Layout>
       <header
@@ -38,7 +93,7 @@ export default function Home() {
           <h1 className="text-3xl font-semibold">
             <Link href={"/"}>FazzPay</Link>
           </h1>
-          <div className="flex gap-7">
+          <div className="flex gap-7 scale-75 md:scale-100 ml-auto">
             <Link
               className="btn bg-primary border-2 border-white capitalize text-lg px-8 hover:bg-primary-focus hover:border-gray-200"
               href={"/auth/login"}
@@ -70,7 +125,7 @@ export default function Home() {
             </button>
           </p>
         </div>
-        <div className="flex-1">
+        <div className="flex-1 hidden lg:block">
           <div className="relative h-screen ">
             <Image
               src="/img/app-mobile-first-content.png"
@@ -87,7 +142,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="bg-primary bg-opacity-10 global-px items-center h-[300px] flex justify-between">
+      <section className="bg-primary bg-opacity-10 global-px items-center h-[300px] flex flex-wrap justify-between ">
         {/* microsoft */}
         <svg
           width="131"
@@ -178,7 +233,7 @@ export default function Home() {
           We have some great features from the application and it’s totally free
           to use by all users around the world.
         </p>
-        <div className="container flex gap-4">
+        <div className="container flex items-center flex-col md:flex-row gap-4 md:mx-auto">
           {[
             [
               <svg
@@ -298,8 +353,8 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="global-px bg-primary bg-opacity-10 flex min-h-screen gap-12">
-        <div className="flex-[2_2_0%] relative">
+      <section className="global-px bg-primary bg-opacity-10  min-h-screen gap-12">
+        <div className="flex-[2_2_0%] relative  hidden md:block">
           <Image
             src={"/img/app-image-2.png"}
             alt="app-image-2"
@@ -309,7 +364,7 @@ export default function Home() {
           />
         </div>
         <div className="flex-[3_3_0%] flex flex-col items-center py-20 gap-10">
-          <h2 className="font-bold text-6xl leading-normal max-w-lg mr-auto">
+          <h2 className="font-bold text-6xl leading-normal md:max-w-lg text-center md:text-left  mr-auto ">
             All The <span className="text-primary">Great</span> FazzPay
             Features.
           </h2>
@@ -344,7 +399,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="global-px py-28 text-dark flex flex-col text-center gap-8 justify-center">
+      <section className="global-px py-28 text-dark flex flex-col text-center gap-8 justify-center bg-[#fafcff]">
         <h2 className="font-bold text-6xl">
           What Users are <span className="text-primary">Saying.</span>
         </h2>
@@ -352,6 +407,104 @@ export default function Home() {
           We have some great features from the application and it’s totally free
           to use by all users around the world.
         </p>
+        <div className="flex gap-10">
+          <div className="m-auto flex ">
+            <button
+              className="btn bg-white hover:bg-gray-200 border-0 shadow-card-md p-2 px-4"
+              onClick={() => {
+                handleSlide("left");
+              }}
+            >
+              <svg
+                width="28"
+                height="28"
+                viewBox="0 0 28 28"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M25.6667 14L2.33341 14"
+                  stroke="#3A3D42"
+                  strokeWidth="3"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+                <path
+                  d="M14 25.6665L2.33333 13.9998L14 2.33317"
+                  stroke="#3A3D42"
+                  strokeWidth="3"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
+            </button>
+          </div>
+
+          <section className="flex w-full py-3 overflow-x-hidden">
+            <div
+              className={`w-fit flex gap-2 relative ${slidePosition[slide]} sliders py-1`}
+            >
+              {data.map((item, idx) => (
+                <div
+                  className="bg-white w-[63.5vw] shadow-card-md rounded-2xl p-7"
+                  key={idx}
+                >
+                  <div className="avatar">
+                    <div className="w-24 rounded-xl">
+                      <Image
+                        src="/img/profile.png"
+                        alt="avatar"
+                        width={200}
+                        height={200}
+                      />
+                    </div>
+                  </div>
+                  <div className="flex flex-col gap-1">
+                    <p className="text-dark text-xl font-semibold">
+                      {item.fullName}
+                    </p>
+                    <p className="text-secondary-context">{item.role}</p>
+                  </div>
+                  <div className="text-secondary-context mt-10">
+                    {item.comment}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </section>
+          <div className="flex-1"></div>
+          <div className="m-auto flex">
+            <button
+              className="btn bg-white hover:bg-gray-200 border-0 shadow-card-md p-2 px-4"
+              onClick={() => {
+                handleSlide("right");
+              }}
+            >
+              <svg
+                width="28"
+                height="28"
+                viewBox="0 0 28 28"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M2.33337 14L25.6667 14"
+                  stroke="#3A3D42"
+                  strokeWidth="3"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+                <path
+                  d="M14 2.3335L25.6667 14.0002L14 25.6668"
+                  stroke="#3A3D42"
+                  strokeWidth="3"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
+            </button>
+          </div>
+        </div>
       </section>
 
       <footer className="text-white global-px py-12 bg-primary">

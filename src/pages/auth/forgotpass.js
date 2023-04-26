@@ -1,12 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
-import Link from 'next/link';
-import { useRouter } from 'next/router';
+import Link from "next/link";
+import { useRouter } from "next/router";
 
-import ForgotPassSuccess from '@/components/auth/forgotPassSuccess';
-import AuthSidebar from '@/components/authSidebar';
-import Layout from '@/components/layout';
-import api from '@/services/api';
+import ForgotPassSuccess from "@/components/auth/forgotPassSuccess";
+import AuthSidebar from "@/components/authSidebar";
+import Layout from "@/components/layout";
+import api from "@/services/api";
+import NoAuthRoute from "@/utils/wrapper/noAuthRoute";
 
 function ForgotPass() {
   const [error, setError] = useState("");
@@ -144,4 +145,4 @@ function ForgotPass() {
   );
 }
 
-export default ForgotPass;
+export default NoAuthRoute(ForgotPass);

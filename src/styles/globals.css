@@ -8,6 +8,12 @@
 @layer components {
   .global-px {
     @apply px-10 lg:px-32;
-
   }
+  .container {
+    @apply max-w-7xl;
+  }
+}
+
+.sliders {
+  transition: 1s ease-in-out;
 }

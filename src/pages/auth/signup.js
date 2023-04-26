@@ -1,11 +1,12 @@
-import { useState } from 'react';
+import { useState } from "react";
 
-import Link from 'next/link';
-import { useRouter } from 'next/router';
+import Link from "next/link";
+import { useRouter } from "next/router";
 
-import AuthSidebar from '@/components/authSidebar';
-import Layout from '@/components/layout';
-import api from '@/services/api';
+import AuthSidebar from "@/components/authSidebar";
+import Layout from "@/components/layout";
+import api from "@/services/api";
+import NoAuthRoute from "@/utils/wrapper/noAuthRoute";
 
 function Signup() {
   const [passwordShown, setPasswordShown] = useState(false);
@@ -371,4 +372,4 @@ function Signup() {
   );
 }
 
-export default Signup;
+export default NoAuthRoute(Signup);
