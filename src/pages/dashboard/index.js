@@ -216,8 +216,14 @@ function Dashboard() {
               </div>
               <div className="flex mt-auto min-h-[12rem]">
                 {dashboard.data.listIncome.map(({ day, total }, idx) => {
-                  const subtotal =
-                    total + dashboard.data.listExpense[idx].total;
+                  let subtotal = 0;
+                  let plus = true;
+                  if (total > dashboard.data.listExpense[idx].total) {
+                    subtotal = total - dashboard.data.listExpense[idx].total;
+                  } else {
+                    subtotal = dashboard.data.listExpense[idx].total - total;
+                    plus = false;
+                  }
                   let percent = 0;
                   percent =
                     (subtotal /
@@ -229,12 +235,15 @@ function Dashboard() {
                     <div className="flex-1 flex flex-col gap-3" key={idx}>
                       <div className="h-52 flex justify-center relative">
                         <div
-                          className={`flex w-4 rounded-3xl bg-primary mt-auto peer relative group h-[${percent}%]`}
+                          className={`flex w-4 rounded-3xl  ${
+                            plus ? `bg-[#9DA6B5]` : `bg-primary`
+                          } mt-auto peer relative group h-[${percent}%]`}
                           style={{ height: `${percent}%` }}
                         >
                           <div className="h-4 w-4 bg-primary rounded-full invisible group-hover:visible outline-white outline-4 outline absolute duration-200 drop-shadow-card-lg"></div>
                           <div className="absolute bg-white -top-12 m-auto invisible group-hover:visible transition-all z-10">
                             <p className="text-income px-3 py-2 text-sm shadow-card-md rounded-xl">
+                              {plus || subtotal == "0" ? "+" : "-"}
                               {toRupiah(subtotal || 0, {
                                 floatingPoint: 0,
                               })}
@@ -351,7 +360,7 @@ function Dashboard() {
                   default:
                     typeTrans.name = "Topup";
                     typeTrans.sign = "+";
-                    typeTrans.color = "text-error";
+                    typeTrans.color = "text-income";
 
                     break;
                 }
