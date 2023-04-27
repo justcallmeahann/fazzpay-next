@@ -23,8 +23,8 @@ function DashboardLayout({ title, className, children }) {
         onClose={() => dispatch(authAction.closeModal())}
       />
       <main className="relative flex global-px bg-dashboard min-h-screen">
-        <Sidebar />
-        <section className="mt-28 mb-6 ml-72 w-full space-y-5">
+        <Sidebar className={`hidden md:block`} />
+        <section className="mt-28 mb-6 md:ml-72 w-full space-y-5">
           {children}
         </section>
       </main>

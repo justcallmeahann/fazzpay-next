@@ -32,7 +32,7 @@ function Header() {
   return (
     <header className="fixed w-full top-0 flex bg-white shadow-[0_4px_20px_0_rgba(0,0,0,0.05)] rounded-b-3xl global-px py-6 items-center justify-between z-20">
       <h1 className="text-primary text-3xl font-semibold">
-        <Link href={"/"}>FazzPay</Link>
+        <Link href={"/dashboard"}>FazzPay</Link>
       </h1>
       <aside className="flex gap-4">
         <div className="avatar">

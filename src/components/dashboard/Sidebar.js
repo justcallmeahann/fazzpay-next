@@ -9,7 +9,7 @@ import { topupAction } from "@/store/slices/topup";
 
 import Topup from "./Topup";
 
-function Sidebar() {
+function Sidebar({ className }) {
   const router = useRouter();
   const currentRoute = router.pathname;
   const style = {
@@ -26,14 +26,17 @@ function Sidebar() {
         isOpen={topup.isOpen}
         onClose={() => dispatch(topupAction.close())}
       />
-      <aside className="relative">
+      <aside className={`relative ${className}`}>
         <div className="py-6 fixed mt-28 w-[16rem] bg-white rounded-3xl shadow-card-md h-[70vh] text-dark">
           <ul className="flex flex-col h-full">
             <li>
               <Link
                 href={"/dashboard/"}
                 className={`${
-                  currentRoute === "/dashboard" ? style.active : style.inactive
+                  currentRoute === "/dashboard" ||
+                  currentRoute === "/dashboard/history"
+                    ? style.active
+                    : style.inactive
                 }  border-l-4 px-6 my-5 flex items-center gap-4 transition-colors hover:text-primary-focus   hover:stroke-primary-focus`}
               >
                 <svg
