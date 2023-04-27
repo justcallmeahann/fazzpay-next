@@ -1,14 +1,21 @@
-import { useEffect, useRef, useState } from "react";
+import {
+  useEffect,
+  useRef,
+  useState,
+} from 'react';
 
-import { useRouter } from "next/router";
-import { useDispatch, useSelector } from "react-redux";
+import { useRouter } from 'next/router';
+import {
+  useDispatch,
+  useSelector,
+} from 'react-redux';
 
-import AuthSidebar from "@/components/authSidebar";
-import Layout from "@/components/layout";
-import api from "@/services/api";
-import { authAction } from "@/store/slices/authInfo";
-import { pinAction } from "@/store/slices/setPin";
-import NoAuthRoute from "@/utils/wrapper/noAuthRoute";
+import AuthSidebar from '@/components/authSidebar';
+import Layout from '@/components/layout';
+import api from '@/services/api';
+import { authAction } from '@/store/slices/authInfo';
+import { pinAction } from '@/store/slices/setPin';
+import NoAuthRoute from '@/utils/wrapper/noAuthRoute';
 
 function SetPin() {
   // local state
@@ -71,7 +78,7 @@ function SetPin() {
       )
       .then((data) => {
         setIsLoading(false);
-        dispatch(authAction.assignAuth({ id: pin.id, token: pin.token }));
+        dispatch(authAction.assignAuth({ id: pin.id_user, token: pin.token }));
         dispatch(pinAction.clear());
         router.push("/dashboard");
       })
@@ -110,7 +117,7 @@ function SetPin() {
                 <input
                   key={index}
                   className="m-2 border h-10 w-10 text-center form-control rounded"
-                  type="text"
+                  type="password"
                   maxLength="1"
                   value={value}
                   ref={refs[index]}

@@ -1,14 +1,18 @@
-import { useState } from "react";
+import { useState } from 'react';
 
-import { parsePhoneNumber } from "awesome-phonenumber";
-import Image from "next/image";
-import Link from "next/link";
-import { useDispatch, useSelector } from "react-redux";
+import { parsePhoneNumber } from 'awesome-phonenumber';
+import Image from 'next/image';
+import Link from 'next/link';
+import {
+  useDispatch,
+  useSelector,
+} from 'react-redux';
 
-import DashboardLayout from "@/components/dashboard/Layout";
-import ChangePhotoProfile from "@/components/dashboard/profile/ChangePhotoProfile";
-import { env } from "@/services/env";
-import { authAction } from "@/store/slices/authInfo";
+import DashboardLayout from '@/components/dashboard/Layout';
+import ChangePhotoProfile
+  from '@/components/dashboard/profile/ChangePhotoProfile';
+import { env } from '@/services/env';
+import { authAction } from '@/store/slices/authInfo';
 
 function Profile() {
   const profile = useSelector((state) => state.profile.data);
@@ -17,8 +21,7 @@ function Profile() {
   const dispatch = useDispatch();
 
   return (
-    <DashboardLayout>
-      <ChangePhotoProfile isOpen={photoModal} onClose={toggleModal} />
+    <DashboardLayout title={"Profile"}>
       <section className="w-full flex flex-col bg-white rounded-2xl justify-center py-10 gap-2 shadow-card-md">
         <div className="avatar">
           <div className="w-20 h-20 rounded-xl m-auto">
@@ -110,6 +113,8 @@ function Profile() {
           </button>
         </div>
       </section>
+
+      <ChangePhotoProfile isOpen={photoModal} onClose={toggleModal} />
     </DashboardLayout>
   );
 }

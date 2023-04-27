@@ -1,15 +1,20 @@
-import { useState } from "react";
+import { useState } from 'react';
 
-import { useDispatch, useSelector } from "react-redux";
+import Link from 'next/link';
+import {
+  useDispatch,
+  useSelector,
+} from 'react-redux';
 
-import api from "@/services/api";
-import { topupAction } from "@/store/slices/topup";
+import api from '@/services/api';
+import { topupAction } from '@/store/slices/topup';
 
 function Topup({ isOpen, onClose }) {
   const [isLoading, setIsLoading] = useState();
   const [amount, setAmount] = useState(0);
 
   const auth = useSelector((state) => state.auth);
+  const profile = useSelector((state) => state.profile);
 
   const topup = useSelector((state) => state.topup);
   const dispatch = useDispatch();
@@ -69,60 +74,81 @@ function Topup({ isOpen, onClose }) {
             />
           </svg>
         </button>
-        {topup.amount < 1 ? (
-          <form className="flex flex-col gap-5" onSubmit={formHandler}>
-            <p className="text-lg font-semibold">Topup</p>
-            <p className="text-sm text-secondary-context">
-              Enter the amount of money, and click submit
-            </p>
-            <div className="bg-white border-2 border-gray-200 p-3 rounded-xl">
-              <input
-                className="outline-none text-lg font-semibold w-full"
-                value={amount}
-                onChange={(e) => {
-                  if (isNaN(e.target.value)) return;
-                  setAmount(e.target.value);
-                }}
-              />
-            </div>
-            <div className="ml-auto">
-              <button
-                type="submit"
-                className={`submit mt-5 btn px-8 bg-primary border-2 border-white capitalize hover:bg-primary-focus hover:border-gray-200 ${
-                  isLoading ? "loading" : ""
-                }`}
-                disabled={amount < 1 || (isLoading && true)}
-              >
-                Submit
-              </button>
-            </div>
-          </form>
+        {profile.data.noTelp ? (
+          topup.amount < 1 ? (
+            <form className="flex flex-col gap-5" onSubmit={formHandler}>
+              <p className="text-lg font-semibold">Topup</p>
+              <p className="text-sm text-secondary-context">
+                Enter the amount of money, and click submit
+              </p>
+              <div className="bg-white border-2 border-gray-200 p-3 rounded-xl">
+                <input
+                  className="outline-none text-lg font-semibold w-full"
+                  value={amount}
+                  onChange={(e) => {
+                    if (isNaN(e.target.value)) return;
+                    setAmount(e.target.value);
+                  }}
+                />
+              </div>
+              <div className="ml-auto">
+                <button
+                  type="submit"
+                  className={`submit mt-5 btn px-8 bg-primary border-2 border-white capitalize hover:bg-primary-focus hover:border-gray-200 ${
+                    isLoading ? "loading" : ""
+                  }`}
+                  disabled={amount < 1 || (isLoading && true)}
+                >
+                  Submit
+                </button>
+              </div>
+            </form>
+          ) : (
+            <section className="flex flex-col gap-5 w-full">
+              <p className="text-lg font-semibold">Topup</p>
+              <p className="text-sm text-secondary-context">
+                Please pay topup within click the button
+              </p>
+
+              <div className="ml-auto">
+                <a
+                  target="_blank"
+                  type="submit"
+                  href={topup.redirectUrl}
+                  className={`submit mt-5 btn px-8 bg-primary border-2 border-white capitalize hover:bg-primary-focus hover:border-gray-200 ${
+                    isLoading ? "loading" : ""
+                  }`}
+                >
+                  Pay
+                </a>
+                <p
+                  className="text-center text-primary cursor-pointer text-sm mt-2"
+                  onClick={() => dispatch(topupAction.clear())}
+                >
+                  Back
+                </p>
+              </div>
+            </section>
+          )
         ) : (
-          <section className="flex flex-col gap-5 w-full">
+          <div className="flex flex-col gap-5">
             <p className="text-lg font-semibold">Topup</p>
             <p className="text-sm text-secondary-context">
-              Please pay topup within click the button
+              Set your telephone number first!
             </p>
 
             <div className="ml-auto">
-              <a
-                target="_blank"
-                type="submit"
-                href={topup.redirectUrl}
+              <Link
+                href={"/dashboard/profile/phone-number"}
+                onClick={() => onClose()}
                 className={`submit mt-5 btn px-8 bg-primary border-2 border-white capitalize hover:bg-primary-focus hover:border-gray-200 ${
                   isLoading ? "loading" : ""
                 }`}
               >
-                Pay
-              </a>
-              <p
-                className="text-center text-primary cursor-pointer text-sm mt-2"
-                onClick={() => dispatch(topupAction.clear())}
-              >
-                Back
-              </p>
+                Set Now
+              </Link>
             </div>
-          </section>
+          </div>
         )}
       </section>
     </div>

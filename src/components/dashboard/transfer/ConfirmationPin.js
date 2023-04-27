@@ -1,12 +1,18 @@
-import { useRef, useState } from "react";
+import {
+  useRef,
+  useState,
+} from 'react';
 
-import { useRouter } from "next/router";
-import { useDispatch, useSelector } from "react-redux";
-import { toast } from "react-toastify";
+import { useRouter } from 'next/router';
+import {
+  useDispatch,
+  useSelector,
+} from 'react-redux';
+import { toast } from 'react-toastify';
 
-import { checkPin } from "@/services/https/profile";
-import { topupAction } from "@/store/slices/topup";
-import { transferAction } from "@/store/slices/transfer";
+import { checkPin } from '@/services/https/profile';
+import { topupAction } from '@/store/slices/topup';
+import { transferAction } from '@/store/slices/transfer';
 
 function ConfirmationPin({ isOpen, onClose, handler }) {
   const [isLoading, setIsLoading] = useState();
@@ -121,7 +127,7 @@ function ConfirmationPin({ isOpen, onClose, handler }) {
                 <input
                   key={index}
                   className="m-2 border h-10 w-10 text-center form-control rounded"
-                  type="text"
+                  type="password"
                   maxLength="1"
                   value={value}
                   ref={refs[index]}

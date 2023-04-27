@@ -1,10 +1,13 @@
-import { useRef, useState } from "react";
+import {
+  useRef,
+  useState,
+} from 'react';
 
-import { useSelector } from "react-redux";
-import { toast } from "react-toastify";
+import { useSelector } from 'react-redux';
+import { toast } from 'react-toastify';
 
-import DashboardLayout from "@/components/dashboard/Layout";
-import api from "@/services/api";
+import DashboardLayout from '@/components/dashboard/Layout';
+import api from '@/services/api';
 
 function ChangePin() {
   const [error, setError] = useState({
@@ -96,7 +99,7 @@ function ChangePin() {
   };
 
   return (
-    <DashboardLayout>
+    <DashboardLayout title={"Change Pin"}>
       <section className="w-full flex flex-col bg-white rounded-2xl justify-center p-7 gap-2 shadow-card-md">
         <h2 className="text-lg font-semibold">Change PIN</h2>
         <p className="max-w-sm">
@@ -117,7 +120,7 @@ function ChangePin() {
               <input
                 key={index}
                 className="m-2 border h-10 w-10 text-center form-control rounded"
-                type="text"
+                type="password"
                 maxLength="1"
                 value={value}
                 ref={refs[index]}

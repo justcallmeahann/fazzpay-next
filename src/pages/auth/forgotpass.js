@@ -1,13 +1,13 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 
-import Link from "next/link";
-import { useRouter } from "next/router";
+import Link from 'next/link';
+import { useRouter } from 'next/router';
 
-import ForgotPassSuccess from "@/components/auth/forgotPassSuccess";
-import AuthSidebar from "@/components/authSidebar";
-import Layout from "@/components/layout";
-import api from "@/services/api";
-import NoAuthRoute from "@/utils/wrapper/noAuthRoute";
+import ForgotPassSuccess from '@/components/auth/forgotPassSuccess';
+import AuthSidebar from '@/components/authSidebar';
+import Layout from '@/components/layout';
+import api from '@/services/api';
+import NoAuthRoute from '@/utils/wrapper/noAuthRoute';
 
 function ForgotPass() {
   const [error, setError] = useState("");
@@ -27,7 +27,7 @@ function ForgotPass() {
     api
       .post("/auth/forgot-password", {
         email,
-        linkDirect: "https://localhost:3000/resetpasword",
+        linkDirect: "https://fazzpay-next-delta.vercel.app/reset-password",
       })
       .then((data) => {
         setIsLoading(false);

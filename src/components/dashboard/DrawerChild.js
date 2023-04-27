@@ -1,12 +1,15 @@
-import { parsePhoneNumber } from "awesome-phonenumber";
-import Image from "next/image";
-import Link from "next/link";
-import { useRouter } from "next/router";
-import { useDispatch, useSelector } from "react-redux";
+import { parsePhoneNumber } from 'awesome-phonenumber';
+import Image from 'next/image';
+import Link from 'next/link';
+import { useRouter } from 'next/router';
+import {
+  useDispatch,
+  useSelector,
+} from 'react-redux';
 
-import { env } from "@/services/env";
-import { authAction } from "@/store/slices/authInfo";
-import { topupAction } from "@/store/slices/topup";
+import { env } from '@/services/env';
+import { authAction } from '@/store/slices/authInfo';
+import { topupAction } from '@/store/slices/topup';
 
 function DrawerChild({ toggleDrawer }) {
   const profile = useSelector((state) => state.profile);
@@ -204,7 +207,7 @@ function DrawerChild({ toggleDrawer }) {
                 toggleDrawer();
               }}
               className={`${
-                currentRoute === "/dashboard/profile"
+                /\/dashboard\/profile/.test(currentRoute)
                   ? style.active
                   : style.inactive
               }  border-l-4 px-6 my-5 flex items-center gap-4 transition-colors hover:text-primary-focus   hover:stroke-primary-focus relative group`}

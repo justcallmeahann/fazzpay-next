@@ -1,13 +1,16 @@
-import { useState } from "react";
+import { useState } from 'react';
 
-import Link from "next/link";
-import { useRouter } from "next/router";
-import { useDispatch, useSelector } from "react-redux";
+import Link from 'next/link';
+import { useRouter } from 'next/router';
+import {
+  useDispatch,
+  useSelector,
+} from 'react-redux';
 
-import { authAction } from "@/store/slices/authInfo";
-import { topupAction } from "@/store/slices/topup";
+import { authAction } from '@/store/slices/authInfo';
+import { topupAction } from '@/store/slices/topup';
 
-import Topup from "./Topup";
+import Topup from './Topup';
 
 function Sidebar({ className }) {
   const router = useRouter();
@@ -159,7 +162,7 @@ function Sidebar({ className }) {
               <Link
                 href={"/dashboard/profile"}
                 className={`${
-                  currentRoute === "/dashboard/profile"
+                  /\/dashboard\/profile/.test(currentRoute)
                     ? style.active
                     : style.inactive
                 }  border-l-4 px-6 my-5 flex items-center gap-4 transition-colors hover:text-primary-focus   hover:stroke-primary-focus relative group`}

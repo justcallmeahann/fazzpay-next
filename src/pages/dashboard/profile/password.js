@@ -1,10 +1,10 @@
-import { useState } from "react";
+import { useState } from 'react';
 
-import { useSelector } from "react-redux";
-import { toast } from "react-toastify";
+import { useSelector } from 'react-redux';
+import { toast } from 'react-toastify';
 
-import DashboardLayout from "@/components/dashboard/Layout";
-import api from "@/services/api";
+import DashboardLayout from '@/components/dashboard/Layout';
+import api from '@/services/api';
 
 function ChangePassword() {
   const [form, setForm] = useState({
@@ -83,7 +83,7 @@ function ChangePassword() {
   };
 
   return (
-    <DashboardLayout>
+    <DashboardLayout title={"Change Password"}>
       <section className="w-full flex flex-col bg-white rounded-2xl justify-center p-7 gap-2 shadow-card-md">
         <h2 className="text-lg font-semibold">Change Password</h2>
         <p className="max-w-sm">

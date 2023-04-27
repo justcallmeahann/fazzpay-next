@@ -1,16 +1,16 @@
-import { useState } from "react";
+import { useState } from 'react';
 
-import { parsePhoneNumber } from "awesome-phonenumber";
-import Link from "next/link";
-import { useSelector } from "react-redux";
+import { parsePhoneNumber } from 'awesome-phonenumber';
+import Link from 'next/link';
+import { useSelector } from 'react-redux';
 
-import DashboardLayout from "@/components/dashboard/Layout";
-import ChangeName from "@/components/dashboard/profile/ChangeName";
+import DashboardLayout from '@/components/dashboard/Layout';
+import ChangeName from '@/components/dashboard/profile/ChangeName';
 
 function PersonalInformation() {
   const profile = useSelector((state) => state.profile.data);
 
-  const [modal, setModal] = useState(true);
+  const [modal, setModal] = useState(false);
 
   const toggleModal = () => setModal(!modal);
 
@@ -42,7 +42,7 @@ function PersonalInformation() {
   ];
 
   return (
-    <DashboardLayout>
+    <DashboardLayout title={"Personal Information"}>
       <section className="w-full flex flex-col bg-white rounded-2xl justify-center p-7 gap-2 shadow-card-md">
         <h2 className="text-lg font-semibold">Personal Information</h2>
         <p className="max-w-sm">
