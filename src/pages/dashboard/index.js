@@ -198,13 +198,14 @@ function Dashboard() {
                       strokeLinejoin="round"
                     />
                     <path
-                      d="M1.83334 9.99968L10 1.83301L18.1667 9.99968"
+                      d="M1.83301 9.99968L9.99968 1.83301L18.1663 9.99968"
                       stroke="#FF5B37"
                       strokeWidth="2"
                       strokeLinecap="round"
                       strokeLinejoin="round"
                     />
                   </svg>
+
                   <p className="text-opacity-20 text-sm mt-1">Expense</p>
                   <p className="font-semibold text-lg">
                     {toRupiah(dashboard.data.totalExpense || 0, {
@@ -286,7 +287,7 @@ function Dashboard() {
                 </div>
               ))
             ) : history.data.length < 1 ? (
-              <section className="flex flex-col items-center justify-center m-auto">
+              <section className="flex flex-col items-center justify-center m-auto text-center">
                 <svg
                   fill="#000000"
                   height="40px"

@@ -1,10 +1,13 @@
-import { useState } from "react";
+import { useState } from 'react';
 
-import { useDispatch, useSelector } from "react-redux";
-import { toast } from "react-toastify";
+import {
+  useDispatch,
+  useSelector,
+} from 'react-redux';
+import { toast } from 'react-toastify';
 
-import { updateProfileName } from "@/services/https/profile";
-import { profileAction } from "@/store/slices/profile";
+import { updateProfileName } from '@/services/https/profile';
+import { profileAction } from '@/store/slices/profile';
 
 function ChangeName({ isOpen, onClose }) {
   const [isLoading, setIsLoading] = useState(false);
@@ -36,13 +39,13 @@ function ChangeName({ isOpen, onClose }) {
         setIsLoading(false);
 
         dispatch(profileAction.getProfileThunk({ id_user, token }));
-        toast("Success update profile name");
+        toast.success("Success update profile name");
 
         onClose();
       })
       .catch(() => {
         setIsLoading(false);
-        toast("An error ocurred");
+        toast.error("An error ocurred");
       });
   };
 

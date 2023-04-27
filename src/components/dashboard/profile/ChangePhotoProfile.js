@@ -1,11 +1,17 @@
-import { useEffect, useState } from "react";
+import {
+  useEffect,
+  useState,
+} from 'react';
 
-import Image from "next/image";
-import { useDispatch, useSelector } from "react-redux";
-import { toast } from "react-toastify";
+import Image from 'next/image';
+import {
+  useDispatch,
+  useSelector,
+} from 'react-redux';
+import { toast } from 'react-toastify';
 
-import { updateProfileImage } from "@/services/https/profile";
-import { profileAction } from "@/store/slices/profile";
+import { updateProfileImage } from '@/services/https/profile';
+import { profileAction } from '@/store/slices/profile';
 
 function ChangePhotoProfile({ isOpen, onClose }) {
   const [selectedFile, setSelectedFile] = useState();
@@ -42,13 +48,17 @@ function ChangePhotoProfile({ isOpen, onClose }) {
       .then(() => {
         setIsLoading(false);
         setSelectedFile();
-        toast("Success update image!");
+        toast.success("Success update image!");
         dispatch(profileAction.getProfileThunk({ id_user, token }));
         onClose();
       })
-      .catch(() => {
+      .catch((err) => {
         setIsLoading(false);
-        toast("gagal");
+        if (err.response?.data?.msg) {
+          toast.error(err.response.data.msg);
+          return;
+        }
+        toast.error("An error ocurred");
       });
   };
 

@@ -1,18 +1,25 @@
-import "react-loading-skeleton/dist/skeleton.css";
+import 'react-loading-skeleton/dist/skeleton.css';
 
-import { useCallback, useEffect, useState } from "react";
+import {
+  useCallback,
+  useEffect,
+  useState,
+} from 'react';
 
-import { parsePhoneNumber } from "awesome-phonenumber";
-import debounce from "lodash/debounce";
-import Image from "next/image";
-import Link from "next/link";
-import { useRouter } from "next/router";
-import Skeleton from "react-loading-skeleton";
-import { useDispatch, useSelector } from "react-redux";
+import { parsePhoneNumber } from 'awesome-phonenumber';
+import debounce from 'lodash/debounce';
+import Image from 'next/image';
+import Link from 'next/link';
+import { useRouter } from 'next/router';
+import Skeleton from 'react-loading-skeleton';
+import {
+  useDispatch,
+  useSelector,
+} from 'react-redux';
 
-import DashboardLayout from "@/components/dashboard/Layout";
-import { env } from "@/services/env";
-import { listUsersAction } from "@/store/slices/listUsers";
+import DashboardLayout from '@/components/dashboard/Layout';
+import { env } from '@/services/env';
+import { listUsersAction } from '@/store/slices/listUsers';
 
 function Transfer() {
   const router = useRouter();
@@ -64,16 +71,16 @@ function Transfer() {
             <path
               d="M13 13L18 18"
               stroke="#A9A9A9"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
             />
             <path
               d="M8 15C11.866 15 15 11.866 15 8C15 4.13401 11.866 1 8 1C4.13401 1 1 4.13401 1 8C1 11.866 4.13401 15 8 15Z"
               stroke="#A9A9A9"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
             />
           </svg>
 
@@ -156,7 +163,7 @@ function Transfer() {
                 id="file-error"
                 data-name="Flat Color"
                 xmlns="http://www.w3.org/2000/svg"
-                class="icon flat-color"
+                className="icon flat-color"
               >
                 <path
                   id="primary"

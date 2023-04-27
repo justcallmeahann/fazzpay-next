@@ -34,10 +34,12 @@ function PersonalInformation() {
     {
       name: "Phone Number",
       url: "/dashboard/profile/phone-number",
-      value: profile.noTelp
-        ? parsePhoneNumber(profile.noTelp, { regionCode: "ID" }).number
-            .international
-        : "empty",
+      value: profile.noTelp ? (
+        parsePhoneNumber(profile.noTelp, { regionCode: "ID" }).number
+          .international
+      ) : (
+        <p classname={`text-sm text-secondary-context`}>(not set yet)</p>
+      ),
     },
   ];
 

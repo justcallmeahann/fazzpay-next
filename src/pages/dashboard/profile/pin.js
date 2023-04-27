@@ -88,7 +88,7 @@ function ChangePin() {
 
         setIsValid(false);
         setForm({ pin: ["", "", "", "", "", ""] });
-        toast("Successfully change pin");
+        toast.success("Successfully change pin");
       })
       .catch((err) => {
         setIsLoading(false);

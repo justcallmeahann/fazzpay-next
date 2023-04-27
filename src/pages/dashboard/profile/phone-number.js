@@ -1,11 +1,14 @@
-import { useState } from "react";
+import { useState } from 'react';
 
-import { useDispatch, useSelector } from "react-redux";
-import { toast } from "react-toastify";
+import {
+  useDispatch,
+  useSelector,
+} from 'react-redux';
+import { toast } from 'react-toastify';
 
-import DashboardLayout from "@/components/dashboard/Layout";
-import api from "@/services/api";
-import { profileAction } from "@/store/slices/profile";
+import DashboardLayout from '@/components/dashboard/Layout';
+import api from '@/services/api';
+import { profileAction } from '@/store/slices/profile';
 
 function ChangePhoneNumber() {
   const [form, setForm] = useState({
@@ -44,7 +47,7 @@ function ChangePhoneNumber() {
           ...initialValue,
         });
         dispatch(profileAction.getProfileThunk(auth));
-        toast("Success update phone number");
+        toast.success("Success update phone number");
       })
       .catch((err) => {
         setIsLoading(false);
