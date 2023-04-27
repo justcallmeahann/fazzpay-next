@@ -1,16 +1,24 @@
+import { useState } from "react";
+
 import { parsePhoneNumber } from "awesome-phonenumber";
 import Link from "next/link";
 import { useSelector } from "react-redux";
 
 import DashboardLayout from "@/components/dashboard/Layout";
+import ChangeName from "@/components/dashboard/profile/ChangeName";
 
 function PersonalInformation() {
   const profile = useSelector((state) => state.profile.data);
 
+  const [modal, setModal] = useState(true);
+
+  const toggleModal = () => setModal(!modal);
+
   const list = [
     {
       name: "First Name",
-      url: "/",
+      url: "",
+      edit: toggleModal,
       value: profile.firstName,
     },
     {
@@ -42,7 +50,7 @@ function PersonalInformation() {
           want to make changes on your information, contact our support.
         </p>
         <div className="flex flex-col gap-5 my-4 w-full">
-          {list.map(({ name, url, value }, idx) => (
+          {list.map(({ name, url, value, edit }, idx) => (
             <div
               className="w-full shadow-card-md bg-white p-4 rounded-xl flex items-center justify-between"
               key={idx}
@@ -61,6 +69,10 @@ function PersonalInformation() {
                 <div className="ml-auto text-md text-primary">
                   <Link href={url}>Manage</Link>
                 </div>
+              ) : edit ? (
+                <div className="ml-auto text-md text-primary">
+                  <button onClick={edit}>Edit</button>
+                </div>
               ) : (
                 ""
               )}
@@ -68,6 +80,7 @@ function PersonalInformation() {
           ))}
         </div>
       </section>
+      <ChangeName isOpen={modal} onClose={toggleModal} />
     </DashboardLayout>
   );
 }

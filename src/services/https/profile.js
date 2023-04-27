@@ -19,3 +19,13 @@ export const updateProfileImage = ({ image, userId }, token) => {
     headers: { Authorization: `Bearer ${token}` },
   });
 };
+
+export const updateProfileName = ({ firstName, lastName, userId }, token) => {
+  return api.patch(
+    `/user/profile/${userId}`,
+    { firstName, lastName },
+    {
+      headers: { Authorization: `Bearer ${token}` },
+    }
+  );
+};
