@@ -13,7 +13,7 @@
 
 ## Overview
 
-NextAuth.js is a complete open-source app wallet solution.
+Fazzpay Next is a complete open-source app wallet solution.
 
 This is an example application that shows how `fazzpay` is applied to a basic Next.js app.
 
