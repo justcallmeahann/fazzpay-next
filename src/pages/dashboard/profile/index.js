@@ -1,25 +1,43 @@
+import { useState } from "react";
+
+import { parsePhoneNumber } from "awesome-phonenumber";
 import Image from "next/image";
 import Link from "next/link";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import DashboardLayout from "@/components/dashboard/Layout";
+import ChangePhotoProfile from "@/components/dashboard/profile/ChangePhotoProfile";
+import { env } from "@/services/env";
+import { authAction } from "@/store/slices/authInfo";
 
 function Profile() {
   const profile = useSelector((state) => state.profile.data);
+  const [photoModal, setPhotoModal] = useState(false);
+  const toggleModal = () => setPhotoModal(!photoModal);
+  const dispatch = useDispatch();
+
   return (
     <DashboardLayout>
+      <ChangePhotoProfile isOpen={photoModal} onClose={toggleModal} />
       <section className="w-full flex flex-col bg-white rounded-2xl justify-center py-10 gap-2 shadow-card-md">
         <div className="avatar">
           <div className="w-20 h-20 rounded-xl m-auto">
             <Image
-              src={profile.image ?? `/img/profile.png`}
+              src={
+                profile?.image
+                  ? `${env.serverImage}${profile?.image}`
+                  : "/img/profile.png"
+              }
               alt=""
               width={80}
               height={80}
             />
           </div>
         </div>
-        <div className="flex justify-center items-center text-secondary-context gap-1">
+        <div
+          className="flex justify-center items-center text-secondary-context gap-1 cursor-pointer"
+          onClick={toggleModal}
+        >
           <svg
             width="11"
             height="11"
@@ -38,7 +56,12 @@ function Profile() {
         </div>
         <div className="flex flex-col justify-center text-center gap-2">
           <p className="text-xl font-semibold">{`${profile.firstName} ${profile.lastName}`}</p>
-          <p className="h-5">{profile.noTelp ?? ""}</p>
+          <p className="h-5">
+            {profile.noTelp
+              ? parsePhoneNumber(profile.noTelp, { regionCode: "ID" }).number
+                  .international
+              : ""}
+          </p>
         </div>
         <div className="flex flex-col w-96 mx-auto font-medium mt-10 gap-5">
           {[
@@ -75,12 +98,16 @@ function Profile() {
               </div>
             </Link>
           ))}
-          <Link href={"/dashboard/logout"} className="block" key={"logout-btn"}>
+          <button
+            onClick={() => dispatch(authAction.toggleModal())}
+            className="block"
+            key={"logout-btn"}
+          >
             <div className="group flex items-center justify-between bg-[#E5E8ED] w-full p-5 rounded-2xl">
               <p className="">Logout</p>
               <p></p>
             </div>
-          </Link>
+          </button>
         </div>
       </section>
     </DashboardLayout>

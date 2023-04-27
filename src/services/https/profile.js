@@ -11,3 +11,11 @@ export const checkPin = (pin, token) => {
     headers: { Authorization: `Bearer ${token}` },
   });
 };
+
+export const updateProfileImage = ({ image, userId }, token) => {
+  const formData = new FormData();
+  formData.append("image", image);
+  return api.patch(`/user/image/${userId}`, formData, {
+    headers: { Authorization: `Bearer ${token}` },
+  });
+};

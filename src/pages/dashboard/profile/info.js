@@ -1,3 +1,4 @@
+import { parsePhoneNumber } from "awesome-phonenumber";
 import Link from "next/link";
 import { useSelector } from "react-redux";
 
@@ -25,7 +26,10 @@ function PersonalInformation() {
     {
       name: "Phone Number",
       url: "/dashboard/profile/phone-number",
-      value: profile.noTelp ?? "empty",
+      value: profile.noTelp
+        ? parsePhoneNumber(profile.noTelp, { regionCode: "ID" }).number
+            .international
+        : "empty",
     },
   ];
 
