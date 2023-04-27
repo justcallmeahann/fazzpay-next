@@ -111,7 +111,7 @@ function Dashboard() {
         <section className="flex-[3_3_0%] flex flex-col  bg-white rounded-3xl shadow-card-md p-6">
           {dashboard.isLoading && !dashboard.isFulfilled ? (
             <>
-              <div className="flex flex-wrap gap-y-6 justify-between mt-3 px-3">
+              <div className="flex flex-wrap gap-y-6 justify-between mt-3 px-3 mb-8">
                 <div className="flex-1 flex flex-col gap-2">
                   <Skeleton height={30} width={30} />
                   <Skeleton height={20} width={70} />
@@ -145,7 +145,7 @@ function Dashboard() {
             </>
           ) : (
             <>
-              <div className="flex flex-wrap gap-y-6 justify-between mt-3 px-3">
+              <div className="flex flex-wrap gap-y-6 justify-between mt-3 px-3 mb-8">
                 <div className="flex-1 flex flex-col gap-2">
                   <svg
                     width="20"

@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useDispatch, useSelector } from "react-redux";
 
+import { env } from "@/services/env";
 import { profileAction } from "@/store/slices/profile";
 
 function Header({ toggleDrawer }) {
@@ -37,7 +38,16 @@ function Header({ toggleDrawer }) {
       <aside className="gap-4 hidden md:flex">
         <div className="avatar">
           <div className="w-11 h-11 rounded-xl m-auto">
-            <Image src="/img/profile.png" alt="" width={40} height={40} />
+            <Image
+              src={
+                profile.data?.image
+                  ? `${env.serverImage}${profile.data?.image}`
+                  : "/img/profile.png"
+              }
+              alt=""
+              width={40}
+              height={40}
+            />
           </div>
         </div>
         <div className="text-dark h-18 flex flex-col justify-between">

@@ -1,8 +1,11 @@
+import "react-loading-skeleton/dist/skeleton.css";
+
 import { useEffect, useState } from "react";
 
 import { parsePhoneNumber } from "awesome-phonenumber";
 import Image from "next/image";
 import { useRouter } from "next/router";
+import Skeleton from "react-loading-skeleton";
 import { useDispatch, useSelector } from "react-redux";
 
 import DashboardLayout from "@/components/dashboard/Layout";
@@ -34,13 +37,17 @@ function Transfer() {
   const dispatch = useDispatch();
   useEffect(() => {
     if (!router.isReady) return;
+    setIsLoading(true);
 
     getProfileById(router.query.id, auth.token)
       .then((result) => {
+        setIsLoading(false);
         setTarget(result.data.data);
       })
       .catch((err) => {
-        console.log(err);
+        setIsLoading(false);
+
+        router.push("/dashboard/transfer");
       });
   }, [router.isReady]);
 
@@ -66,35 +73,50 @@ function Transfer() {
         <h2 className="text-lg font-semibold">Transfer Money</h2>
 
         <section className="flex flex-col gap-5 w-full my-2">
-          <div className="w-full flex bg-white rounded-2xl shadow-card-md p-5 gap-5">
-            <div className="avatar">
-              <div className="w-16 h-16 rounded-xl m-auto">
-                <Image
-                  src={
-                    target.image
-                      ? `${env.serverImage}${target.image}`
-                      : "/img/profile.png"
-                  }
-                  alt=""
-                  width={70}
-                  height={70}
-                />
+          {isLoading ? (
+            <section className="w-full flex bg-white rounded-2xl shadow-card-md p-5 gap-5">
+              <div className="avatar">
+                <div className="w-16 h-16 rounded-xl m-auto">
+                  <Skeleton width="4rem" height="4rem" />
+                </div>
+              </div>
+              <div className="flex flex-col justify-evenly">
+                <Skeleton width="6rem" height="1rem" />
+
+                <Skeleton width="4rem" height="1rem" />
+              </div>
+            </section>
+          ) : (
+            <div className="w-full flex bg-white rounded-2xl shadow-card-md p-5 gap-5">
+              <div className="avatar">
+                <div className="w-16 h-16 rounded-xl m-auto">
+                  <Image
+                    src={
+                      target.image
+                        ? `${env.serverImage}${target.image}`
+                        : "/img/profile.png"
+                    }
+                    alt=""
+                    width={70}
+                    height={70}
+                  />
+                </div>
+              </div>
+              <div className="flex flex-col justify-evenly">
+                <p className="text-lg text-dark font-medium">
+                  {target.firstName} {target.lastName}
+                </p>
+                {target.noTelp && (
+                  <p className="text-secondary-context text-sm">
+                    {
+                      parsePhoneNumber(target.noTelp, { regionCode: "ID" })
+                        .number.international
+                    }
+                  </p>
+                )}
               </div>
             </div>
-            <div className="flex flex-col justify-evenly">
-              <p className="text-lg text-dark font-medium">
-                {target.firstName} {target.lastName}
-              </p>
-              {target.noTelp && (
-                <p className="text-secondary-context text-sm">
-                  {
-                    parsePhoneNumber(target.noTelp, { regionCode: "ID" }).number
-                      .international
-                  }
-                </p>
-              )}
-            </div>
-          </div>
+          )}
         </section>
 
         <p className="max-w-xs text-secondary-context text-md">
