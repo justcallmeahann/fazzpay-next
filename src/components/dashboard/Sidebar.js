@@ -27,7 +27,7 @@ function Sidebar({ className }) {
         onClose={() => dispatch(topupAction.close())}
       />
       <aside className={`relative ${className}`}>
-        <div className="py-6 fixed mt-28 w-[16rem] bg-white rounded-3xl shadow-card-md h-[70vh] text-dark">
+        <div className="py-6 fixed mt-28 w-[6rem] lg:w-[16rem] bg-white rounded-3xl shadow-card-md h-[70vh] text-dark">
           <ul className="flex flex-col h-full">
             <li>
               <Link
@@ -37,7 +37,7 @@ function Sidebar({ className }) {
                   currentRoute === "/dashboard/history"
                     ? style.active
                     : style.inactive
-                }  border-l-4 px-6 my-5 flex items-center gap-4 transition-colors hover:text-primary-focus   hover:stroke-primary-focus`}
+                }  border-l-4 px-6 my-5 flex items-center gap-4 transition-colors hover:text-primary-focus   hover:stroke-primary-focus relative group`}
               >
                 <svg
                   width="28"
@@ -71,7 +71,9 @@ function Sidebar({ className }) {
                     strokeLinejoin="round"
                   />
                 </svg>
-                Dashboard
+                <div className="absolute bg-white lg:bg-transparent lg:relative lg:inline-block -right-[125%] lg:right-0 p-2 lg:p-0 shadow-card-md lg:shadow-none rounded-lg hidden group-hover:block">
+                  Dashboard
+                </div>
               </Link>
             </li>
 
@@ -79,10 +81,10 @@ function Sidebar({ className }) {
               <Link
                 href={"/dashboard/transfer"}
                 className={`${
-                  currentRoute === "/dashboard/transfer"
+                  /\/dashboard\/transfer/.test(currentRoute)
                     ? style.active
                     : style.inactive
-                }  border-l-4 px-6 my-5 flex items-center gap-4 transition-colors hover:text-primary-focus   hover:stroke-primary-focus`}
+                }  border-l-4 px-6 my-5 flex items-center gap-4 transition-colors hover:text-primary-focus   hover:stroke-primary-focus relative group`}
               >
                 <svg
                   width="28"
@@ -106,7 +108,10 @@ function Sidebar({ className }) {
                     strokeLinejoin="round"
                   />
                 </svg>
-                Transfer
+
+                <div className="absolute bg-white lg:bg-transparent lg:relative lg:inline-block -right-[100%] lg:right-0 p-2 lg:p-0 shadow-card-md lg:shadow-none rounded-lg hidden group-hover:block">
+                  Transfer
+                </div>
               </Link>
             </li>
 
@@ -119,7 +124,7 @@ function Sidebar({ className }) {
                   currentRoute === "/dashboard/topup"
                     ? style.active
                     : style.inactive
-                }  border-l-4 px-6 my-5 flex items-center gap-4 transition-colors hover:text-primary-focus   hover:stroke-primary-focus`}
+                }  border-l-4 px-6 my-5 flex items-center gap-4 transition-colors hover:text-primary-focus   hover:stroke-primary-focus relative group`}
               >
                 <svg
                   width="28"
@@ -143,7 +148,10 @@ function Sidebar({ className }) {
                     strokeLinejoin="round"
                   />
                 </svg>
-                Topup
+
+                <div className="absolute bg-white lg:bg-transparent lg:relative lg:inline-block -right-[125%] lg:right-0 p-2 lg:p-0 shadow-card-md lg:shadow-none rounded-lg hidden group-hover:block">
+                  Topup
+                </div>
               </button>
             </li>
 
@@ -154,7 +162,7 @@ function Sidebar({ className }) {
                   currentRoute === "/dashboard/profile"
                     ? style.active
                     : style.inactive
-                }  border-l-4 px-6 my-5 flex items-center gap-4 transition-colors hover:text-primary-focus   hover:stroke-primary-focus`}
+                }  border-l-4 px-6 my-5 flex items-center gap-4 transition-colors hover:text-primary-focus   hover:stroke-primary-focus relative group`}
               >
                 <svg
                   width="28"
@@ -178,12 +186,15 @@ function Sidebar({ className }) {
                     strokeLinejoin="round"
                   />
                 </svg>
-                Profile
+
+                <div className="absolute bg-white lg:bg-transparent lg:relative lg:inline-block -right-[90%] lg:right-0 p-2 lg:p-0 shadow-card-md lg:shadow-none rounded-lg hidden group-hover:block">
+                  Profile
+                </div>
               </Link>
             </li>
             <li className=" mt-auto ">
               <button
-                className="border-white border-l-4 px-6 mb-3 flex items-center gap-4"
+                className="border-white border-l-4 px-6 mb-3 flex items-center gap-4 relative group"
                 onClick={() => dispatch(authAction.toggleModal())}
               >
                 <svg
@@ -218,7 +229,10 @@ function Sidebar({ className }) {
                     strokeLinejoin="round"
                   />
                 </svg>
-                Logout
+
+                <div className="absolute bg-white lg:bg-transparent lg:relative lg:inline-block -right-[125%] lg:right-0 p-2 lg:p-0 shadow-card-md lg:shadow-none rounded-lg hidden group-hover:block">
+                  Logout
+                </div>
               </button>
             </li>
           </ul>

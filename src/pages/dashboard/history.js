@@ -39,6 +39,8 @@ function History() {
   if (history.isFulfilled && page > history.pagination.totalPage)
     router.push({ query: { page: 1 } });
 
+  if (history.isFulfilled && page < 1) router.push({ query: { page: 1 } });
+
   const changeHandler = (e) => {
     router.push({
       query: {
