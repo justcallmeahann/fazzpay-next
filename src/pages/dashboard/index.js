@@ -217,17 +217,18 @@ function Dashboard() {
                 {dashboard.data.listIncome.map(({ day, total }, idx) => {
                   const subtotal =
                     total + dashboard.data.listExpense[idx].total;
-                  let percent =
+                  let percent = 0;
+                  percent =
                     (subtotal /
                       (dashboard.data.totalIncome +
                         dashboard.data.totalExpense)) *
                     100;
-                  if (percent < 10) percent = 10;
+                  if (percent < 10 || isNaN(percent)) percent = 10;
                   return (
                     <div className="flex-1 flex flex-col gap-3" key={idx}>
                       <div className="h-52 flex justify-center relative">
                         <div
-                          className={`flex w-4 rounded-3xl bg-primary mt-auto peer relative group`}
+                          className={`flex w-4 rounded-3xl bg-primary mt-auto peer relative group h-[${percent}%]`}
                           style={{ height: `${percent}%` }}
                         >
                           <div className="h-4 w-4 bg-primary rounded-full invisible group-hover:visible outline-white outline-4 outline absolute duration-200 drop-shadow-card-lg"></div>

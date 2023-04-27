@@ -1,5 +1,5 @@
-import { useRouter } from "next/router";
-import { useSelector } from "react-redux";
+import { useRouter } from 'next/router';
+import { useSelector } from 'react-redux';
 
 function NoAuthRoute(WrappedComponent) {
   const Auth = (props) => {

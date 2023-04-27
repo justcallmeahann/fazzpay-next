@@ -1,5 +1,5 @@
-import { useRouter } from "next/router";
-import { useSelector } from "react-redux";
+import { useRouter } from 'next/router';
+import { useSelector } from 'react-redux';
 
 function AuthRoute(WrappedComponent) {
   const Auth = (props) => {

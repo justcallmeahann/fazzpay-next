@@ -1,20 +1,23 @@
-import "react-modern-drawer/dist/index.css";
+import 'react-modern-drawer/dist/index.css';
 
-import { useState } from "react";
+import { useState } from 'react';
 
-import { useRouter } from "next/router";
-import Drawer from "react-modern-drawer";
-import { useDispatch, useSelector } from "react-redux";
+import { useRouter } from 'next/router';
+import Drawer from 'react-modern-drawer';
+import {
+  useDispatch,
+  useSelector,
+} from 'react-redux';
 
-import { authAction } from "@/store/slices/authInfo";
-import AuthRoute from "@/utils/wrapper/authRoute";
+import { authAction } from '@/store/slices/authInfo';
+import AuthRoute from '@/utils/wrapper/authRoute';
 
-import Layout from "../layout";
-import DrawerChild from "./DrawerChild";
-import Footer from "./Footer";
-import Header from "./Header";
-import Logout from "./Logout";
-import Sidebar from "./Sidebar";
+import Layout from '../layout';
+import DrawerChild from './DrawerChild';
+import Footer from './Footer';
+import Header from './Header';
+import Logout from './Logout';
+import Sidebar from './Sidebar';
 
 function DashboardLayout({ title, className, children }) {
   const auth = useSelector((state) => state.auth);
@@ -25,7 +28,6 @@ function DashboardLayout({ title, className, children }) {
   const toggleDrawer = () => {
     setDrawer(!drawer);
   };
-  if (!auth.token || !auth.id_user) router.push("/auth/login");
   return (
     <Layout title={title} className={className}>
       <Drawer
