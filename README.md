@@ -1,38 +1,68 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+
+<p align="center">
+   <br/>
+   <a href="https://nextjs.org" target="_blank">
+   <img height="64" src="https://nextjs.org/static/favicon/android-chrome-192x192.png" />
+   </a>
+   <h3 align="center"><b>Fazzpay</b> - Example App</h3>
+   <p align="center">
+   Open Source. Front-end.
+   </p>
+   
+</p>
+
+## Overview
+
+NextAuth.js is a complete open-source app wallet solution.
+
+This is an example application that shows how `fazzpay` is applied to a basic Next.js app.
+
+The deployed version can be found at [`fazzpay-next-delta.vercel.app`](https://fazzpay-next-delta.vercel.app/)
+
 
 ## Getting Started
 
-First, run the development server:
+### 1. Clone the repository and install dependencies
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
+```
+git clone https://github.com/justcallmeahann/fazzpay-next
+cd fazzpay-next
+npm install
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### 2. Configure your local environment
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+Copy the .env.local.example file in this directory to .env.local (which will be ignored by Git):
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+```
+cp .env.local.example .env.local
+```
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+### 3. Start the application
 
-## Learn More
+To run your site locally, use:
 
-To learn more about Next.js, take a look at the following resources:
+```
+npm run dev
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+To run it in production mode, use:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+```
+npm run build
+npm run start
+```
 
-## Deploy on Vercel
+### 4. Preparing for Production
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Follow the [Deployment documentation](https://authjs.dev/guides/basics/deployment) or deploy the example instantly using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=fazzpay-next-example)
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/git/external?repository-url=https://github.com/justcallmeahann/fazzpay-next&project-name=fazzpay-next-example&repository-name=fazzpay-next)
+
+## Acknowledgements
+
+<a href="https://vercel.com?utm_source=fazzpay-next&utm_campaign=oss">
+<img width="170px" src="https://raw.githubusercontent.com/nextauthjs/next-auth/main/docs/static/img/powered-by-vercel.svg" alt="Powered By Vercel" />
+</a>
+<p align="left">Thanks to Vercel sponsoring this project by allowing it to be deployed for free for the entire Auth.js Team</p>
