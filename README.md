@@ -25,11 +25,11 @@
 
 ## Overview
 
-jokopi is a complete open-source app coffee shop ordering.
+Fazzpay is a complete open-source app simplify financial needs and saving much time in banking needs with one single app.
 
-This is an example application that shows how `jokopi` is applied to a react app.
+This is an example application that shows how `fazzpay` is applied to a react app.
 
-Build using create react app.
+Build using create next app.
 
 You can build it by yourself
 
