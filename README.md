@@ -1,68 +1,140 @@
-
-<p align="center">
-   <br/>
-   <a href="https://nextjs.org" target="_blank">
-   <img height="64" src="https://nextjs.org/static/favicon/android-chrome-192x192.png" />
-   </a>
-   <h3 align="center"><b>Fazzpay</b> - Example App</h3>
+<div align="center">
+<img src="./public/img/logo-square.png" width="144" style="border-radius: 20px;margin-bottom:1rem"/>
+<h3 align="center"><b>Fazzpay</b></h3>
    <p align="center">
    Open Source. Front-end.
    </p>
-   
-</p>
+
+   [Demo](https://fazzpay-next-delta.vercel.app/) · [Report Bug](#report-bug) · [Request Feature](#report-bug)
+
+</div>
+
+## Docs
+
+- [Docs](#docs)
+- [Overview](#overview)
+  - [Features](#features)
+- [Technologies Used](#technologies-used)
+- [Getting Started](#getting-started)
+  - [Prerequisites](#prerequisites)
+  - [Installation](#installation)
+- [Screenshots](#screenshots)
+- [Resources](#resources)
+- [License](#license)
+- [Report Bug](#report-bug)
 
 ## Overview
 
-Fazzpay Next is a complete open-source app wallet solution.
+jokopi is a complete open-source app coffee shop ordering.
 
-This is an example application that shows how `fazzpay` is applied to a basic Next.js app.
+This is an example application that shows how `jokopi` is applied to a react app.
 
-The deployed version can be found at [`fazzpay-next-delta.vercel.app`](https://fazzpay-next-delta.vercel.app/)
+Build using create react app.
 
+You can build it by yourself
+
+### Features
+
+- Login, Register, Forgot Password, Logout
+- Profile
+- Transaction History
+- Transfer
+- Top-up
+- etc.
+
+## Technologies Used
+
+[![My Skills](https://skillicons.dev/icons?i=next,redux,tailwind,vercel)](https://skillicons.dev)
+
+- React & React Router DOM
+- Redux & Redux Persist (Local Storage)
+- TailwindCSS
+- DaisyUI
+- React Hot Toast
+- Lodash
+- Axios
+- JWT Decode
+- Awesome Phone Number
+- Vercel for deploying demo
+- etc.
 
 ## Getting Started
 
-### 1. Clone the repository and install dependencies
+### Prerequisites
 
-```
-git clone https://github.com/justcallmeahann/fazzpay-next
-cd fazzpay-next
-npm install
-```
+   You need to install some software to run this project
 
-### 2. Configure your local environment
+- [Node.js](https://nodejs.org/en/download) (LTS version recommended, 14 or newer)
 
-Copy the .env.local.example file in this directory to .env.local (which will be ignored by Git):
+### Installation
 
-```
-cp .env.local.example .env.local
-```
+1. Clone this repository to your local
 
+   ```bash
+   git clone https://github.com/nyannss/fazzpay-next.git
+   ```
 
-### 3. Start the application
+2. Change current directory
 
-To run your site locally, use:
+   ```bash
+   cd fazzpay-next
+   ```
 
-```
-npm run dev
-```
+3. Install dependencies
 
-To run it in production mode, use:
+   If you using npm
 
-```
-npm run build
-npm run start
-```
+   ```bash
+   npm install
+   ```
 
-### 4. Preparing for Production
+   If you using yarn
 
-Follow the [Deployment documentation](https://authjs.dev/guides/basics/deployment) or deploy the example instantly using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=fazzpay-next-example)
+   ```bash
+   yarn
+   ```
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/git/external?repository-url=https://github.com/justcallmeahann/fazzpay-next&project-name=fazzpay-next-example&repository-name=fazzpay-next)
+4. Setup environment
 
-## Acknowledgements
+   ```env
+   NEXT_PUBLIC_APP_SERVER = https://example.com
+   NEXT_PUBLIC_FINGERPRINT_NAME = example_storage
+   NEXT_PUBLIC_IMAGE_SERVER = https://example.com
+   ```
 
-<a href="https://vercel.com?utm_source=fazzpay-next&utm_campaign=oss">
-<img width="170px" src="https://raw.githubusercontent.com/nextauthjs/next-auth/main/docs/static/img/powered-by-vercel.svg" alt="Powered By Vercel" />
-</a>
-<p align="left">Thanks to Vercel sponsoring this project by allowing it to be deployed for free for the entire Auth.js Team</p>
+5. Running app
+
+    ```bash
+    npm start
+    ```
+
+## Screenshots
+
+<img src="./public/img/screenshots/1.png"/>
+<img src="./public/img/screenshots/2.png"/>
+<img src="./public/img/screenshots/3.png"/>
+<img src="./public/img/screenshots/4.png"/>
+<!-- <img src="./public/assets/screenshots/5.png"/> -->
+
+## Resources
+
+Special thanks for providing resources such as icons and images.
+
+- [Flaticon](https://flaticon.com/)
+- [unDraw](https://undraw.co/)
+- [SVGRepo](https://svgrepo.com/)
+- and other sources.
+  
+If there are resources that belong to you, please let me know, I will write it here.
+
+## License
+
+This project is licensed under the ISC License. See the [LICENSE](LICENSE) file for details.
+
+<!-- ![](assets/screenshots/1.jpg)
+
+![](assets/screenshots/2.jpg) -->
+## Report Bug
+
+Any error report you can pull request
+or contact: <nyannss@proton.me>
