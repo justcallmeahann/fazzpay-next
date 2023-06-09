@@ -9,9 +9,9 @@
 
 </div>
 
-## Docs
+## Table of Contents
 
-- [Docs](#docs)
+- [Table of Contents](#table-of-contents)
 - [Overview](#overview)
   - [Features](#features)
 - [Technologies Used](#technologies-used)
@@ -20,6 +20,7 @@
   - [Installation](#installation)
 - [Screenshots](#screenshots)
 - [Resources](#resources)
+- [Contributors](#contributors)
 - [License](#license)
 - [Report Bug](#report-bug)
 
@@ -46,16 +47,13 @@ You can build it by yourself
 
 [![My Skills](https://skillicons.dev/icons?i=next,redux,tailwind,vercel)](https://skillicons.dev)
 
-- React & React Router DOM
-- Redux & Redux Persist (Local Storage)
-- TailwindCSS
-- DaisyUI
-- React Hot Toast
-- Lodash
-- Axios
-- JWT Decode
-- Awesome Phone Number
-- Vercel for deploying demo
+- [Next.js](https://nextjs.org/)
+- [Redux](https://redux.js.org/) & [Redux Persist](https://www.npmjs.com/package/redux-persist) (Local Storage)
+- [TailwindCSS](https://tailwindcss.com/)
+- [DaisyUI](https://daisyui.com/)
+- [React Hot Toast](https://react-hot-toast.com/)
+- [Awesome Phone Number](https://www.npmjs.com/package/awesome-phonenumber)
+- [Vercel](https://vercel.com/) for deploying demo
 - etc.
 
 ## Getting Started
@@ -110,10 +108,12 @@ You can build it by yourself
 
 ## Screenshots
 
-<img src="./public/img/screenshots/1.png"/>
-<img src="./public/img/screenshots/2.png"/>
-<img src="./public/img/screenshots/3.png"/>
-<img src="./public/img/screenshots/4.png"/>
+<div align="center">
+<img src="./public/img/screenshots/1.png" width="368"/>
+<img src="./public/img/screenshots/2.png" width="368"/>
+<img src="./public/img/screenshots/3.png" width="368"/>
+<img src="./public/img/screenshots/4.png" width="368"/>
+</div>
 <!-- <img src="./public/assets/screenshots/5.png"/> -->
 
 ## Resources
@@ -126,6 +126,10 @@ Special thanks for providing resources such as icons and images.
 - and other sources.
   
 If there are resources that belong to you, please let me know, I will write it here.
+
+## Contributors
+
+- [nyannss](https://github.com/nyannss)
 
 ## License
 
