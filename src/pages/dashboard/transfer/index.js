@@ -1,46 +1,42 @@
-import 'react-loading-skeleton/dist/skeleton.css';
+import "react-loading-skeleton/dist/skeleton.css";
 
-import {
-  useCallback,
-  useEffect,
-  useState,
-} from 'react';
+import { useCallback, useEffect, useState } from "react";
 
-import { parsePhoneNumber } from 'awesome-phonenumber';
-import debounce from 'lodash/debounce';
-import Image from 'next/image';
-import Link from 'next/link';
-import { useRouter } from 'next/router';
-import Skeleton from 'react-loading-skeleton';
-import {
-  useDispatch,
-  useSelector,
-} from 'react-redux';
+import { parsePhoneNumber } from "awesome-phonenumber";
+import debounce from "lodash/debounce";
+import Image from "next/image";
+import Link from "next/link";
+import { useRouter } from "next/router";
+import Skeleton from "react-loading-skeleton";
+import { useDispatch, useSelector } from "react-redux";
 
-import DashboardLayout from '@/components/dashboard/Layout';
-import { env } from '@/services/env';
-import { listUsersAction } from '@/store/slices/listUsers';
+import DashboardLayout from "@/components/dashboard/Layout";
+import { env } from "@/services/env";
+import { listUsersAction } from "@/store/slices/listUsers";
 
 function Transfer() {
   const router = useRouter();
-  const { search } = router.query;
+  const { filter = "", page = 1, search } = router.query;
 
   const [form, setForm] = useState({
     searchReceiver: "",
   });
   const [error, setError] = useState({});
-  const auth = useSelector((state) => state.auth);
-  const listUsers = useSelector((state) => state.listUsers);
+  const { auth, listUsers } = useSelector((state) => ({
+    auth: state.auth,
+    listUsers: state.listUsers,
+  }));
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(
       listUsersAction.getListUsersThunk({
         limit: 5,
         search: search,
+        page,
         token: auth.token,
       })
     );
-  }, [search]);
+  }, [search, page]);
 
   const changeHandler = (e) => {
     router.push({
@@ -180,6 +176,75 @@ function Transfer() {
             </section>
           )}
         </section>
+        {(listUsers.isLoading && !listUsers.isFulfilled) ||
+        listUsers.data.length < 1 ? (
+          ""
+        ) : (
+          <section className="mt-10 flex justify-center relative gap-5">
+            {listUsers.pagination.page > 1 ? (
+              <button
+                className="btn group bg-primary hover:bg-primary-focus border-0"
+                onClick={() =>
+                  router.push({
+                    query: {
+                      ...router.query,
+                      page: Number(page) - 1,
+                    },
+                  })
+                }
+              >
+                ← Prev Page
+              </button>
+            ) : (
+              ""
+            )}
+
+            {listUsers.pagination.page < listUsers.pagination.totalPage ? (
+              <button
+                className="btn group bg-primary hover:bg-primary-focus border-0"
+                onClick={() =>
+                  router.push({
+                    query: {
+                      ...router.query,
+                      page: Number(page) + 1,
+                    },
+                  })
+                }
+              >
+                Next Page
+                <svg
+                  width="20"
+                  height="20"
+                  viewBox="0 0 20 20"
+                  className=" h-5 ml-2 transition ease-in group-hover:transform group-hover:translate-x-0.5"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M1.83366 10L18.167 10"
+                    stroke="#FFF"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                  <path
+                    d="M10.0003 1.83365L18.167 10.0003L10.0003 18.167"
+                    stroke="#FFF"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
+              </button>
+            ) : (
+              ""
+            )}
+
+            <div className="absolute right-0 bottom-0 text-sm">
+              Page {page} / {listUsers.pagination.totalPage}
+            </div>
+          </section>
+        )}
       </section>
     </DashboardLayout>
   );

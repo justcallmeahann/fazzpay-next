@@ -4,6 +4,7 @@ import {
 } from 'react';
 
 import { parsePhoneNumber } from 'awesome-phonenumber';
+import _ from 'lodash';
 import Image from 'next/image';
 import Link from 'next/link';
 import {
@@ -67,7 +68,7 @@ function Header({ toggleDrawer }) {
           </div>
         </div>
         <div className="text-dark h-18 flex flex-col justify-between">
-          <p className="font-semibold text-lg">{`${profile.data?.firstName} ${profile.data?.lastName}`}</p>
+          <p className="font-semibold text-lg">{_.truncate(`${profile.data?.firstName} ${profile.data?.lastName}`, {length: 20, omission: "..."})}</p>
           {profile.data?.noTelp ? (
             <p className="text-opacity-90 text-sm">{pn.number.international}</p>
           ) : (

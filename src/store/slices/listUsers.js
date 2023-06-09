@@ -3,6 +3,12 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   data: [],
+  pagination: {
+    page: 1,
+    totalPage: 1,
+    limit: 5,
+    totalData: 0,
+  },
   isLoading: false,
   isRejected: false,
   isFulfilled: false,
@@ -11,7 +17,10 @@ const initialState = {
 
 const getListUsersThunk = createAsyncThunk(
   "listUsers/get",
-  async ({ page = "1", limit = "5", search = "", sort = "RAND()", token }) => {
+  async (
+    { page = "1", limit = "5", search = "", sort = "RAND()", token },
+    { rejectWithValue, fulfillWithValue }
+  ) => {
     try {
       const response = await api.get(`/user/`, {
         params: {
@@ -23,9 +32,11 @@ const getListUsersThunk = createAsyncThunk(
         headers: { Authorization: `Bearer ${token}` },
       });
       // console.log(response.data.data);
-      return response.data.data;
+      // console.log(response.data.pagination);
+      const { data, pagination } = response.data;
+      return fulfillWithValue({ data, pagination });
     } catch (err) {
-      return err;
+      return rejectWithValue(err.response.data);
     }
   }
 );
@@ -52,11 +63,13 @@ const listUsersSlice = createSlice({
         };
       })
       .addCase(getListUsersThunk.fulfilled, (prevState, action) => {
+        const { data, pagination } = action?.payload;
         return {
           ...prevState,
           isLoading: false,
           isFulfilled: true,
-          data: action.payload,
+          data,
+          pagination,
         };
       })
       .addCase(getListUsersThunk.rejected, (prevState, action) => {

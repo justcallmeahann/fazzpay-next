@@ -104,7 +104,7 @@ function History() {
                     </div>
                   </div>
                 ))
-              : history.data.length > 1 &&
+              : history.data.length > 0 &&
                 history.data.map(
                   ({ id, fullName, image, amount, type, notes }, idx) => {
                     let typeTrans = {
@@ -179,6 +179,7 @@ function History() {
                 onClick={() =>
                   router.push({
                     query: {
+                      ...router.query,
                       page: Number(page) - 1,
                     },
                   })
@@ -196,6 +197,7 @@ function History() {
                 onClick={() =>
                   router.push({
                     query: {
+                      ...router.query,
                       page: Number(page) + 1,
                     },
                   })

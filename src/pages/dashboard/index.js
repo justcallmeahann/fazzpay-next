@@ -1,26 +1,21 @@
-import 'react-loading-skeleton/dist/skeleton.css';
+import "react-loading-skeleton/dist/skeleton.css";
 
-import {
-  Fragment,
-  useEffect,
-} from 'react';
+import { Fragment, useEffect } from "react";
 
-import { parsePhoneNumber } from 'awesome-phonenumber';
-import Image from 'next/image';
-import Link from 'next/link';
-import { useRouter } from 'next/router';
-import Skeleton from 'react-loading-skeleton';
-import {
-  useDispatch,
-  useSelector,
-} from 'react-redux';
+import { parsePhoneNumber } from "awesome-phonenumber";
+import _ from "lodash";
+import Image from "next/image";
+import Link from "next/link";
+import { useRouter } from "next/router";
+import Skeleton from "react-loading-skeleton";
+import { useDispatch, useSelector } from "react-redux";
 
-import DashboardLayout from '@/components/dashboard/Layout';
-import { env } from '@/services/env';
-import { dashboardAction } from '@/store/slices/dashboard';
-import { historyAction } from '@/store/slices/history';
-import { topupAction } from '@/store/slices/topup';
-import toRupiah from '@develoka/angka-rupiah-js';
+import DashboardLayout from "@/components/dashboard/Layout";
+import { env } from "@/services/env";
+import { dashboardAction } from "@/store/slices/dashboard";
+import { historyAction } from "@/store/slices/history";
+import { topupAction } from "@/store/slices/topup";
+import toRupiah from "@develoka/angka-rupiah-js";
 
 function Dashboard() {
   const profile = useSelector((state) => state.profile);
@@ -381,7 +376,9 @@ function Dashboard() {
                       </div>
                     </div>
                     <div className="flex flex-col justify-center">
-                      <p className="font-semibold">{fullName}</p>
+                      <p className="font-semibold">
+                        {_.truncate(fullName, { length: 15, omission: "..." })}
+                      </p>
                       <p className="text-opacity-70 text-sm font-light">
                         {typeTrans.name}
                       </p>

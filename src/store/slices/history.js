@@ -17,7 +17,7 @@ const initialState = {
 
 const getHistoryThunk = createAsyncThunk(
   "history/get",
-  async (payload, controller) => {
+  async (payload, { fulfillWithValue, rejectWithValue }) => {
     try {
       const { page = 1, limit = 5, filter, token } = payload;
       const response = await api.get(`/transaction/history`, {
@@ -29,10 +29,13 @@ const getHistoryThunk = createAsyncThunk(
         headers: { Authorization: `Bearer ${token}` },
       });
       // console.log(response.data.data);
-      return { data: response.data.data, pagination: response.data.pagination };
+      return fulfillWithValue({
+        data: response.data.data,
+        pagination: response.data.pagination,
+      });
     } catch (err) {
       //   store.dispatch(authAction.dismissAuth());
-      return {};
+      return rejectWithValue("Error while fetching data");
     }
   }
 );
