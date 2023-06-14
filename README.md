@@ -1,5 +1,8 @@
 <div align="center">
 <img src="./public/img/logo-square.png" width="144" style="border-radius: 20px;margin-bottom:1rem"/>
+
+[![My Skills](https://skillicons.dev/icons?i=next,redux,tailwind,vercel)](#technologies-used)
+
 <h3 align="center"><b>Fazzpay</b></h3>
    <p align="center">
    Open Source. Front-end.
@@ -43,8 +46,6 @@ You can build it by yourself
 - etc.
 
 ## Technologies Used
-
-[![My Skills](https://skillicons.dev/icons?i=next,redux,tailwind,vercel)](https://skillicons.dev)
 
 - [Next.js](https://nextjs.org/)
 - [Redux](https://redux.js.org/) & [Redux Persist](https://www.npmjs.com/package/redux-persist) (Local Storage)
