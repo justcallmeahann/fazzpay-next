@@ -1,7 +1,7 @@
 <div align="center">
-<img src="./public/img/logo-square.png" width="144" style="border-radius: 20px;margin-bottom:1rem"/>
+<img src="./public/img/logo-square.png" width="144" style="border-radius: 20px;margin-bottom:1rem"/><br>
 
-[![My Skills](https://skillicons.dev/icons?i=next,redux,tailwind,vercel)](#technologies-used)
+[![Technologies Used](https://skillicons.dev/icons?i=next,redux,tailwind,vercel)](#technologies-used)
 
 <h3 align="center"><b>Fazzpay</b></h3>
    <p align="center">
