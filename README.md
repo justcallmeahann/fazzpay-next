@@ -1,5 +1,5 @@
 <div align="center">
-<img src="./public/img/logo-square.png" width="144" style="border-radius: 20px;margin-bottom:1rem"/><br>
+<img src="./public/img/logo-square.png" width="144" style="border-radius: 20px;margin-bottom:1rem"/><br><br>
 
 [![Technologies Used](https://skillicons.dev/icons?i=next,redux,tailwind,vercel)](#technologies-used)
 
